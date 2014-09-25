@@ -20,31 +20,41 @@ if ( typeof Object.create !== 'function' ) {
 			}
 
 			this.options = $.extend( {}, $.toast.options, _options );
-			this.processToast();
+			this.process();
 		},
 		setup: function () {
 
-			var _toastEl = $('<div></div>');
+			var _toastEl = $('<div></div>'),
+				_toastContent = '';
 			_toastEl.addClass( this.options.toastClass );
 
 			if ( this.options.text instanceof Array ) {
-				var listContent = '<ul class="jq-toast-ul">';
+
+				if ( this.options.heading ) {
+					_toastContent +='<h2 class="jq-toast-heading">' + this.options.heading + '</h2>';
+				};
+
+				_toastContent += '<ul class="jq-toast-ul">';
 				for (var i = 0; i < this.options.text.length; i++) {
-					listContent += '<li class="jq-toast-li" id="jq-toast-item-' + i + '">' + this.options.text[i] + '</li>';
+					_toastContent += '<li class="jq-toast-li" id="jq-toast-item-' + i + '">' + this.options.text[i] + '</li>';
 				}
-				listContent += '</ul>';
-				_toastEl.html( listContent );
+				_toastContent += '</ul>';
+
 			} else {
-				_toastEl.html( this.options.text );
+				if ( this.options.heading ) {
+					_toastContent ='<h2 class="jq-toast-heading">' + this.options.heading + '</h2>';
+				};
+				_toastContent += this.options.text;
 			}
 
+			_toastEl.html( _toastContent );
 			this.options.toastEl = _toastEl;
 		},
-		processToast: function () {
+		process: function () {
 			this.setup();
-			this.showToast();
+			this.addToDom();
 		},
-		showToast: function () {
+		addToDom: function () {
 			 var _container = $('.'+ this.options.containerClass);
 			 
 			 if ( _container.length === 0 ) {
@@ -62,12 +72,20 @@ if ( typeof Object.create !== 'function' ) {
 	$.toast = function(options) {
 		var toast = Object.create(Toast);
 		toast.init(options, this);
+
+		return {
+			reset : function () {
+				toast.reset();
+			}
+		}
 	};
 
 	$.toast.options = {
 		text: 'Default text to be shown for the toast.',
+		heading: '',
 		containerClass: 'jq-toast-wrap',
-		toastClass: 'jq-toast-single'
+		toastClass: 'jq-toast-single',
+		transition: 'fade'
 	};
 
 })( jQuery, window, document );
