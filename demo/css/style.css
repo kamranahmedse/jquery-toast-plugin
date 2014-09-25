@@ -6,3 +6,6 @@
 
 .jq-toast-single h2 { font-size: 14px; margin-bottom: 7px; }
 .jq-toast-single a { color: #eee; text-decoration: none; font-weight: bold; border-bottom: 1px solid white; padding-bottom: 3px; }
+
+.jq-toast-single ul { margin-left: 15px; }
+.jq-toast-single ul li { list-style-type: disc !important; line-height: 17px; }
