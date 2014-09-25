@@ -69,6 +69,8 @@ if ( typeof Object.create !== 'function' ) {
 			this.options.toastEl.hide();
 			if ( this.options.transition.toLowerCase() === 'fade' ) {
 				this.options.toastEl.fadeIn();
+			} else if ( this.options.transition.toLowerCase() === 'slide' ) {
+				this.options.toastEl.slideDown();
 			} else {
 				this.options.toastEl.show();
 			}
