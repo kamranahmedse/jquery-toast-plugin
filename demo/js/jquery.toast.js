@@ -61,9 +61,20 @@ if ( typeof Object.create !== 'function' ) {
 			 if ( _container.length === 0 ) {
 			 	_container = $('<div class="' + this.options.containerClass + '"></div>');
 			 	$('body').append( _container );
-			 } 
+			 }
 
 			 _container.append( this.options.toastEl );
+
+		  	if ( this.options.maxToasts && !isNaN( parseInt( this.options.maxToasts ), 10 ) ) {
+		 	 	
+		 	 	var _prevToastCount = _container.find('.' + this.options.toastClass).length,
+		 	 		_extToastCount = _prevToastCount - this.options.maxToasts;
+
+		 	 	if ( _extToastCount > 0 ) {
+		  			$('.' + this.options.containerClass).find('.' + this.options.toastClass).slice(0, _extToastCount).remove();
+		 	 	};
+
+		  	};
 		},
 		animate: function () {
 			this.options.toastEl.hide();
@@ -96,7 +107,8 @@ if ( typeof Object.create !== 'function' ) {
 		heading: '',
 		containerClass: 'jq-toast-wrap',
 		toastClass: 'jq-toast-single',
-		transition: 'fade'
+		transition: 'fade',
+		maxToasts: 5
 	};
 
 })( jQuery, window, document );
