@@ -53,6 +53,7 @@ if ( typeof Object.create !== 'function' ) {
 		process: function () {
 			this.setup();
 			this.addToDom();
+			this.animate();
 		},
 		addToDom: function () {
 			 var _container = $('.'+ this.options.containerClass);
@@ -63,6 +64,14 @@ if ( typeof Object.create !== 'function' ) {
 			 } 
 
 			 _container.append( this.options.toastEl );
+		},
+		animate: function () {
+			this.options.toastEl.hide();
+			if ( this.options.transition.toLowerCase() === 'fade' ) {
+				this.options.toastEl.fadeIn();
+			} else {
+				this.options.toastEl.show();
+			}
 		},
 		reset: function () {
 			$('.' + this.options.containerClass).remove();
