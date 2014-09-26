@@ -26,7 +26,7 @@ if ( typeof Object.create !== 'function' ) {
 
 			var _toastEl = $('<div></div>'),
 				_toastContent = '';
-			_toastEl.addClass( this.options.toastClass );
+			_toastEl.addClass( 'jq-toast-single' );
 
 			if ( this.options.text instanceof Array ) {
 
@@ -56,10 +56,10 @@ if ( typeof Object.create !== 'function' ) {
 			this.animate();
 		},
 		addToDom: function () {
-			 var _container = $('.'+ this.options.containerClass);
+			 var _container = $('.jq-toast-wrap');
 			 
 			 if ( _container.length === 0 ) {
-			 	_container = $('<div class="' + this.options.containerClass + '"></div>');
+			 	_container = $('<div class="jq-toast-wrap"></div>');
 			 	$('body').append( _container );
 			 }
 
@@ -67,27 +67,27 @@ if ( typeof Object.create !== 'function' ) {
 
 		  	if ( this.options.maxToasts && !isNaN( parseInt( this.options.maxToasts ), 10 ) ) {
 		 	 	
-		 	 	var _prevToastCount = _container.find('.' + this.options.toastClass).length,
+		 	 	var _prevToastCount = _container.find('.jq-toast-single').length,
 		 	 		_extToastCount = _prevToastCount - this.options.maxToasts;
 
 		 	 	if ( _extToastCount > 0 ) {
-		  			$('.' + this.options.containerClass).find('.' + this.options.toastClass).slice(0, _extToastCount).remove();
+		  			$('.jq-toast-wrap').find('.jq-toast-single').slice(0, _extToastCount).remove();
 		 	 	};
 
 		  	};
 		},
 		animate: function () {
 			this.options.toastEl.hide();
-			if ( this.options.transition.toLowerCase() === 'fade' ) {
+			if ( this.options.showHideTransition.toLowerCase() === 'fade' ) {
 				this.options.toastEl.fadeIn();
-			} else if ( this.options.transition.toLowerCase() === 'slide' ) {
+			} else if ( this.options.showHideTransition.toLowerCase() === 'slide' ) {
 				this.options.toastEl.slideDown();
 			} else {
 				this.options.toastEl.show();
 			}
 		},
 		reset: function () {
-			$('.' + this.options.containerClass).remove();
+			$('.jq-toast-wrap').remove();
 		}
 	};
 	
@@ -105,9 +105,7 @@ if ( typeof Object.create !== 'function' ) {
 	$.toast.options = {
 		text: 'Default text to be shown for the toast.',
 		heading: '',
-		containerClass: 'jq-toast-wrap',
-		toastClass: 'jq-toast-single',
-		transition: 'fade',
+		showHideTransition: 'fade',
 		maxToasts: 5
 	};
 
