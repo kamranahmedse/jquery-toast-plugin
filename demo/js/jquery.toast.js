@@ -85,6 +85,23 @@ if ( typeof Object.create !== 'function' ) {
 			} else {
 				this.options.toastEl.show();
 			}
+
+			if ( ( this.options.hideAfter !== false ) && !isNaN( parseInt( this.options.hideAfter, 10 ) ) ) {
+
+				var that = this;
+
+				window.setTimeout(function(){
+					
+					if ( that.options.showHideTransition.toLowerCase() === 'fade' ) {
+						that.options.toastEl.fadeOut();
+					} else if ( that.options.showHideTransition.toLowerCase() === 'slide' ) {
+						that.options.toastEl.slideUp();
+					} else {
+						that.options.toastEl.hide();
+					}
+
+				}, this.options.hideAfter);
+			};
 		},
 		reset: function () {
 			$('.jq-toast-wrap').remove();
@@ -106,6 +123,7 @@ if ( typeof Object.create !== 'function' ) {
 		text: 'Default text to be shown for the toast.',
 		heading: '',
 		showHideTransition: 'fade',
+		hideAfter: false,
 		maxToasts: 5
 	};
 
