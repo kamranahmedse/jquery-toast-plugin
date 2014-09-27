@@ -61,16 +61,16 @@ if ( typeof Object.create !== 'function' ) {
 			 if ( _container.length === 0 ) {
 			 	_container = $('<div class="jq-toast-wrap"></div>');
 			 	$('body').append( _container );
-			 } else if ( !this.options.stackLength || isNaN( parseInt(this.options.stackLength, 10) ) ) {
+			 } else if ( !this.options.stack || isNaN( parseInt(this.options.stack, 10) ) ) {
 			 	_container.empty();
 			 }
 
 			 _container.append( this.options.toastEl );
 
-		  	if ( this.options.stackLength && !isNaN( parseInt( this.options.stackLength ), 10 ) ) {
+		  	if ( this.options.stack && !isNaN( parseInt( this.options.stack ), 10 ) ) {
 		 	 	
 		 	 	var _prevToastCount = _container.find('.jq-toast-single').length,
-		 	 		_extToastCount = _prevToastCount - this.options.stackLength;
+		 	 		_extToastCount = _prevToastCount - this.options.stack;
 
 		 	 	if ( _extToastCount > 0 ) {
 		  			$('.jq-toast-wrap').find('.jq-toast-single').slice(0, _extToastCount).remove();
@@ -126,7 +126,7 @@ if ( typeof Object.create !== 'function' ) {
 		heading: '',
 		showHideTransition: 'fade',
 		hideAfter: false,
-		stackLength: 5
+		stack: 5
 	};
 
 })( jQuery, window, document );
