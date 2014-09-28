@@ -84,6 +84,11 @@ if ( typeof Object.create !== 'function' ) {
 
 		  	if ( ( typeof this.options.position === 'string' ) && ( $.inArray( this.options.position, this._positionClasses) !== -1 ) ) {
 		  		_container.addClass( this.options.position );
+		  	} else if ( typeof this.options.position === 'object' ) {
+		  		_container.css({
+		  			'left': this.options.position.x,
+		  			'top': this.options.position.y
+		  		});
 		  	} else {
 		  		_container.addClass( 'bottom-left' );
 		  	}
