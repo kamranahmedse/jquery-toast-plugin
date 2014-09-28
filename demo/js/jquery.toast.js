@@ -27,10 +27,6 @@ if ( typeof Object.create !== 'function' ) {
 
 			this.options = $.extend( {}, $.toast.options, _options );
 			this.process();
-
-			this.bindUI();
-		},
-		bindUI: function () {
 		},
 		setup: function () {
 
@@ -68,6 +64,7 @@ if ( typeof Object.create !== 'function' ) {
 			this.setup();
 			this.addToDom();
 			this.position();
+			this.bindToast();
 			this.animate();
 		},
 		position: function () {
@@ -97,6 +94,24 @@ if ( typeof Object.create !== 'function' ) {
 			} else {
 				this._container.addClass( 'bottom-left' );
 			}
+		},
+		bindToast: function () {
+
+			var that = this;
+
+			this._toastEl.find('.close-jq-toast-single').on('click', function ( e ) {
+
+				e.preventDefault();
+
+				if( that.options.showHideTransition === 'fade') {
+					that._toastEl.fadeOut();
+				} else if ( that.options.showHideTransition === 'slide' ) {
+					that._toastEl.slideUp();
+				} else {
+					that._toastEl.hide();
+				}
+			});
+
 		},
 		addToDom: function () {
 			 var _container = $('.jq-toast-wrap');
