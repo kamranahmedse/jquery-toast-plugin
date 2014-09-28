@@ -79,8 +79,10 @@ if ( typeof Object.create !== 'function' ) {
 
 			} else if ( typeof this.options.position === 'object' ) {
 				this._container.css({
-					'left': this.options.position.x,
-					'top': this.options.position.y
+					top : this.options.position.top ? this.options.position.top : 'auto',
+					bottom : this.options.position.bottom ? this.options.position.bottom : 'auto',
+					left : this.options.position.left ? this.options.position.left : 'auto',
+					right : this.options.position.right ? this.options.position.right : 'auto'
 				});
 			} else {
 				this._container.addClass( 'bottom-left' );
