@@ -10,7 +10,11 @@ if ( typeof Object.create !== 'function' ) {
 }
 (function( $, window, document, undefined ) {
 	"use strict";
+	
 	var Toast = {
+
+		_positionClasses : ['bottom-left', 'bottom-right', 'top-right', 'top-left'],
+
 		init: function (options, elem) {
 			var _options = {};
 			if ( ( typeof options === 'string' ) || ( options instanceof Array ) ) {
@@ -77,6 +81,12 @@ if ( typeof Object.create !== 'function' ) {
 		 	 	};
 
 		  	}
+
+		  	if ( ( typeof this.options.position === 'string' ) && ( $.inArray( this.options.position, this._positionClasses) !== -1 ) ) {
+		  		_container.addClass( this.options.position );
+		  	} else {
+		  		_container.addClass( 'bottom-left' );
+		  	}
 		},
 		animate: function () {
 			this.options.toastEl.hide();
@@ -122,11 +132,12 @@ if ( typeof Object.create !== 'function' ) {
 	};
 
 	$.toast.options = {
-		text: 'Default text to be shown for the toast.',
+		text: '',
 		heading: '',
 		showHideTransition: 'fade',
-		hideAfter: false,
-		stack: 5
+		hideAfter: 2000,
+		stack: 5,
+		position: 'bottom-left'
 	};
 
 })( jQuery, window, document );

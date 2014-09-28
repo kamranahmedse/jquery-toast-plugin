@@ -1,5 +1,10 @@
-.jq-toast-wrap { display: block; position: fixed; bottom: 40px; left: 40px; width: 250px; }
+.jq-toast-wrap { display: block; position: fixed; width: 250px; }
 .jq-toast-wrap * { margin: 0; padding: 0; }
+
+.jq-toast-wrap.bottom-left { bottom: 20px; left: 20px; }
+.jq-toast-wrap.bottom-right { bottom: 20px; right: 40px; }
+.jq-toast-wrap.top-left { top: 20px; left: 20px; }
+.jq-toast-wrap.top-right { top: 20px; right: 40px; }
 
 .jq-toast-single { display: block; width: 100%; background: #444; color: #eee; padding: 10px; margin-bottom: 5px; border-radius: 4px; font-size: 12px; font-family: arial; opacity: 0.9; line-height: 17px; }
 .jq-toast-single:hover { opacity: 1; } 
