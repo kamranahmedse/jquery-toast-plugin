@@ -6,7 +6,7 @@
 .jq-toast-wrap.top-left { top: 20px; left: 20px; }
 .jq-toast-wrap.top-right { top: 20px; right: 40px; }
 
-.jq-toast-single { display: block; width: 100%; background: #444; color: #eee; padding: 10px; margin-bottom: 5px; border-radius: 4px; font-size: 12px; font-family: arial; opacity: 0.9; line-height: 17px; }
+.jq-toast-single { display: block; width: 100%; background: #444; color: #eee; padding: 10px; margin-bottom: 5px; border-radius: 4px; font-size: 12px; font-family: arial; opacity: 0.9; line-height: 17px; position: relative; }
 .jq-toast-single:hover { opacity: 1; } 
 
 .jq-toast-single h2 { font-size: 14px; margin-bottom: 7px; }
@@ -14,3 +14,5 @@
 
 .jq-toast-single ul { margin-left: 15px; }
 .jq-toast-single ul li { list-style-type: disc !important; line-height: 17px; }
+
+.close-jq-toast-single { position: absolute; top: 3px; right: 7px; font-size: 14px; cursor: pointer; }

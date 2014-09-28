@@ -16,7 +16,9 @@ if ( typeof Object.create !== 'function' ) {
 		_positionClasses : ['bottom-left', 'bottom-right', 'top-right', 'top-left', 'bottom-center', 'top-center'],
 
 		init: function (options, elem) {
+			
 			var _options = {};
+			
 			if ( ( typeof options === 'string' ) || ( options instanceof Array ) ) {
 				_options.text = options;
 			} else {
@@ -25,12 +27,20 @@ if ( typeof Object.create !== 'function' ) {
 
 			this.options = $.extend( {}, $.toast.options, _options );
 			this.process();
+
+			this.bindUI();
+		},
+		bindUI: function () {
 		},
 		setup: function () {
 
 			var _toastEl = $('<div></div>'),
 				_toastContent = '';
 			_toastEl.addClass( 'jq-toast-single' );
+
+			if ( this.options.allowToastClose ) {
+				_toastContent += '<span class="close-jq-toast-single">&times;</span>';
+			};
 
 			if ( this.options.text instanceof Array ) {
 
@@ -46,7 +56,7 @@ if ( typeof Object.create !== 'function' ) {
 
 			} else {
 				if ( this.options.heading ) {
-					_toastContent ='<h2 class="jq-toast-heading">' + this.options.heading + '</h2>';
+					_toastContent +='<h2 class="jq-toast-heading">' + this.options.heading + '</h2>';
 				};
 				_toastContent += this.options.text;
 			}
@@ -160,6 +170,7 @@ if ( typeof Object.create !== 'function' ) {
 		text: '',
 		heading: '',
 		showHideTransition: 'fade',
+		allowToastClose: true,
 		hideAfter: 2000,
 		stack: 5,
 		position: 'bottom-left'
