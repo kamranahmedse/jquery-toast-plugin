@@ -13,7 +13,7 @@ if ( typeof Object.create !== 'function' ) {
 	
 	var Toast = {
 
-		_positionClasses : ['bottom-left', 'bottom-right', 'top-right', 'top-left'],
+		_positionClasses : ['bottom-left', 'bottom-right', 'top-right', 'top-left', 'bottom-center', 'top-center'],
 
 		init: function (options, elem) {
 			var _options = {};
@@ -52,12 +52,39 @@ if ( typeof Object.create !== 'function' ) {
 			}
 
 			_toastEl.html( _toastContent );
-			this.options.toastEl = _toastEl;
+			this._toastEl = _toastEl;
 		},
 		process: function () {
 			this.setup();
 			this.addToDom();
+			this.position();
 			this.animate();
+		},
+		position: function () {
+			if ( ( typeof this.options.position === 'string' ) && ( $.inArray( this.options.position, this._positionClasses) !== -1 ) ) {
+
+				if ( this.options.position === 'bottom-center' ) {
+					this._container.css({
+					    left: ( $(window).outerWidth() / 2 ) - this._container.outerWidth()/2,
+					    bottom: 20
+					});
+				} else if ( this.options.position === 'top-center' ) {
+					this._container.css({
+					    left: ( $(window).outerWidth() / 2 ) - this._container.outerWidth()/2,
+					    top: 20
+					});
+				} else {
+					this._container.addClass( this.options.position );
+				}
+
+			} else if ( typeof this.options.position === 'object' ) {
+				this._container.css({
+					'left': this.options.position.x,
+					'top': this.options.position.y
+				});
+			} else {
+				this._container.addClass( 'bottom-left' );
+			}
 		},
 		addToDom: function () {
 			 var _container = $('.jq-toast-wrap');
@@ -69,7 +96,7 @@ if ( typeof Object.create !== 'function' ) {
 			 	_container.empty();
 			 }
 
-			 _container.append( this.options.toastEl );
+			 _container.append( this._toastEl );
 
 		  	if ( this.options.stack && !isNaN( parseInt( this.options.stack ), 10 ) ) {
 		 	 	
@@ -82,25 +109,16 @@ if ( typeof Object.create !== 'function' ) {
 
 		  	}
 
-		  	if ( ( typeof this.options.position === 'string' ) && ( $.inArray( this.options.position, this._positionClasses) !== -1 ) ) {
-		  		_container.addClass( this.options.position );
-		  	} else if ( typeof this.options.position === 'object' ) {
-		  		_container.css({
-		  			'left': this.options.position.x,
-		  			'top': this.options.position.y
-		  		});
-		  	} else {
-		  		_container.addClass( 'bottom-left' );
-		  	}
+		  	this._container = _container;
 		},
 		animate: function () {
-			this.options.toastEl.hide();
+			this._toastEl.hide();
 			if ( this.options.showHideTransition.toLowerCase() === 'fade' ) {
-				this.options.toastEl.fadeIn();
+				this._toastEl.fadeIn();
 			} else if ( this.options.showHideTransition.toLowerCase() === 'slide' ) {
-				this.options.toastEl.slideDown();
+				this._toastEl.slideDown();
 			} else {
-				this.options.toastEl.show();
+				this._toastEl.show();
 			}
 
 			if ( ( this.options.hideAfter !== false ) && !isNaN( parseInt( this.options.hideAfter, 10 ) ) ) {
@@ -110,11 +128,11 @@ if ( typeof Object.create !== 'function' ) {
 				window.setTimeout(function(){
 					
 					if ( that.options.showHideTransition.toLowerCase() === 'fade' ) {
-						that.options.toastEl.fadeOut();
+						that._toastEl.fadeOut();
 					} else if ( that.options.showHideTransition.toLowerCase() === 'slide' ) {
-						that.options.toastEl.slideUp();
+						that._toastEl.slideUp();
 					} else {
-						that.options.toastEl.hide();
+						that._toastEl.hide();
 					}
 
 				}, this.options.hideAfter);
