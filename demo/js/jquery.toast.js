@@ -13,7 +13,7 @@ if ( typeof Object.create !== 'function' ) {
 	
 	var Toast = {
 
-		_positionClasses : ['bottom-left', 'bottom-right', 'top-right', 'top-left', 'bottom-center', 'top-center'],
+		_positionClasses : ['bottom-left', 'bottom-right', 'top-right', 'top-left', 'bottom-center', 'top-center', 'mid-center'],
 
 		init: function (options, elem) {
 			
@@ -64,6 +64,10 @@ if ( typeof Object.create !== 'function' ) {
 				_toastEl.css("color", this.options.textColor);
 			};
 
+			if ( this.options.textAlign ) {
+				_toastEl.css('text-align', this.options.textAlign);
+			}
+
 			this._toastEl = _toastEl;
 		},
 		process: function () {
@@ -85,6 +89,11 @@ if ( typeof Object.create !== 'function' ) {
 					this._container.css({
 					    left: ( $(window).outerWidth() / 2 ) - this._container.outerWidth()/2,
 					    top: 20
+					});
+				} else if ( this.options.position === 'mid-center' ) {
+					this._container.css({
+					    left: ( $(window).outerWidth() / 2 ) - this._container.outerWidth()/2,
+					    top: ( $(window).outerHeight() / 2 ) - this._container.outerHeight()/2
 					});
 				} else {
 					this._container.addClass( this.options.position );
@@ -219,6 +228,7 @@ if ( typeof Object.create !== 'function' ) {
 		position: 'bottom-left',
 		bgColor: '#444',
 		textColor: '#eee',
+		textAlign: 'left',
 		beforeShow: function () {},
 		afterShown: function () {}
 	};
