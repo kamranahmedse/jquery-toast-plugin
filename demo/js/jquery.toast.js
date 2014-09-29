@@ -118,6 +118,17 @@ if ( typeof Object.create !== 'function' ) {
 				}
 			});
 
+			if ( typeof this.options.beforeShow == 'function' ) {
+				this._toastEl.on('beforeShow', function () {
+					that.options.beforeShow();
+				});
+			};
+
+			if ( typeof this.options.afterShown == 'function' ) {
+				this._toastEl.on('afterShown', function () {
+					that.options.afterShown();
+				});
+			};			
 		},
 		addToDom: function () {
 			 var _container = $('.jq-toast-wrap');
@@ -145,13 +156,24 @@ if ( typeof Object.create !== 'function' ) {
 		  	this._container = _container;
 		},
 		animate: function () {
+			var that = this;
+
 			this._toastEl.hide();
+
+			this._toastEl.trigger('beforeShow');
+
 			if ( this.options.showHideTransition.toLowerCase() === 'fade' ) {
-				this._toastEl.fadeIn();
+				this._toastEl.fadeIn(function ( ){
+					that._toastEl.trigger('afterShown');
+				});
 			} else if ( this.options.showHideTransition.toLowerCase() === 'slide' ) {
-				this._toastEl.slideDown();
+				this._toastEl.slideDown(function ( ){
+					that._toastEl.trigger('afterShown');
+				});
 			} else {
-				this._toastEl.show();
+				this._toastEl.show(function ( ){
+					that._toastEl.trigger('afterShown');
+				});
 			}
 
 			if ( ( this.options.hideAfter !== false ) && !isNaN( parseInt( this.options.hideAfter, 10 ) ) ) {
@@ -196,7 +218,9 @@ if ( typeof Object.create !== 'function' ) {
 		stack: 5,
 		position: 'bottom-left',
 		bgColor: '#444',
-		textColor: '#eee'
+		textColor: '#eee',
+		beforeShow: function () {},
+		afterShown: function () {}
 	};
 
 })( jQuery, window, document );
