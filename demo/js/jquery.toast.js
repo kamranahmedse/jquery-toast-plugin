@@ -119,11 +119,20 @@ if ( typeof Object.create !== 'function' ) {
 				e.preventDefault();
 
 				if( that.options.showHideTransition === 'fade') {
-					that._toastEl.fadeOut();
+					that._toastEl.trigger('beforeHide');
+					that._toastEl.fadeOut(function () {
+						that._toastEl.trigger('afterHidden');
+					});
 				} else if ( that.options.showHideTransition === 'slide' ) {
-					that._toastEl.slideUp();
+					that._toastEl.trigger('beforeHide');
+					that._toastEl.slideUp(function () {
+						that._toastEl.trigger('afterHidden');
+					});
 				} else {
-					that._toastEl.hide();
+					that._toastEl.trigger('beforeHide');
+					that._toastEl.hide(function () {
+						that._toastEl.trigger('afterHidden');
+					});
 				}
 			});
 
@@ -136,6 +145,18 @@ if ( typeof Object.create !== 'function' ) {
 			if ( typeof this.options.afterShown == 'function' ) {
 				this._toastEl.on('afterShown', function () {
 					that.options.afterShown();
+				});
+			};
+
+			if ( typeof this.options.beforeHide == 'function' ) {
+				this._toastEl.on('beforeHide', function () {
+					that.options.beforeHide();
+				});
+			};
+
+			if ( typeof this.options.afterHidden == 'function' ) {
+				this._toastEl.on('afterHidden', function () {
+					that.options.afterHidden();
 				});
 			};			
 		},
@@ -192,11 +213,20 @@ if ( typeof Object.create !== 'function' ) {
 				window.setTimeout(function(){
 					
 					if ( that.options.showHideTransition.toLowerCase() === 'fade' ) {
-						that._toastEl.fadeOut();
+						that._toastEl.trigger('beforeHide');
+						that._toastEl.fadeOut(function () {
+							that._toastEl.trigger('afterHidden');
+						});
 					} else if ( that.options.showHideTransition.toLowerCase() === 'slide' ) {
-						that._toastEl.slideUp();
+						that._toastEl.trigger('beforeHide');
+						that._toastEl.slideUp(function () {
+							that._toastEl.trigger('afterHidden');
+						});
 					} else {
-						that._toastEl.hide();
+						that._toastEl.trigger('beforeHide');
+						that._toastEl.hide(function () {
+							that._toastEl.trigger('afterHidden');
+						});
 					}
 
 				}, this.options.hideAfter);
