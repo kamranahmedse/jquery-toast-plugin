@@ -58,6 +58,12 @@ if ( typeof Object.create !== 'function' ) {
 			}
 
 			_toastEl.html( _toastContent );
+
+			if ( this.options.bgColor ) {
+				_toastEl.css("background-color", this.options.bgColor);
+				_toastEl.css("color", this.options.textColor);
+			};
+
 			this._toastEl = _toastEl;
 		},
 		process: function () {
@@ -188,7 +194,9 @@ if ( typeof Object.create !== 'function' ) {
 		allowToastClose: true,
 		hideAfter: 2000,
 		stack: 5,
-		position: 'bottom-left'
+		position: 'bottom-left',
+		bgColor: '#444',
+		textColor: '#eee'
 	};
 
 })( jQuery, window, document );
