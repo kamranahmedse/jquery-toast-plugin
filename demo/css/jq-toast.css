@@ -1,4 +1,4 @@
-.jq-toast-wrap { display: block; position: fixed; width: 250px; }
+.jq-toast-wrap { display: block; position: fixed; width: 250px;  pointer-events: none !important; }
 .jq-toast-wrap * { margin: 0; padding: 0; }
 
 .jq-toast-wrap.bottom-left { bottom: 20px; left: 20px; }
@@ -6,8 +6,7 @@
 .jq-toast-wrap.top-left { top: 20px; left: 20px; }
 .jq-toast-wrap.top-right { top: 20px; right: 40px; }
 
-.jq-toast-single { display: block; width: 100%; padding: 10px; margin-bottom: 5px; border-radius: 4px; font-size: 12px; font-family: arial; opacity: 0.9; line-height: 17px; position: relative; }
-.jq-toast-single:hover { opacity: 1; } 
+.jq-toast-single { display: block; width: 100%; padding: 10px; margin-bottom: 5px; border-radius: 4px; font-size: 12px; font-family: arial; line-height: 17px; position: relative;  pointer-events: all !important; }
 
 .jq-toast-single h2 { font-size: 14px; margin-bottom: 7px; }
 .jq-toast-single a { color: #eee; text-decoration: none; font-weight: bold; border-bottom: 1px solid white; padding-bottom: 3px; }

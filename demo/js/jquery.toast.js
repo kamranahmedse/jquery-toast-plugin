@@ -170,6 +170,8 @@ if ( typeof Object.create !== 'function' ) {
 			 	_container.empty();
 			 }
 
+			 _container.find('.jq-toast-single:hidden').remove();
+
 			 _container.append( this._toastEl );
 
 		  	if ( this.options.stack && !isNaN( parseInt( this.options.stack ), 10 ) ) {
