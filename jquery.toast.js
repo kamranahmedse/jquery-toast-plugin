@@ -234,8 +234,12 @@ if ( typeof Object.create !== 'function' ) {
 				}, this.options.hideAfter);
 			};
 		},
-		reset: function () {
-			$('.jq-toast-wrap').remove();
+		reset: function ( resetWhat ) {
+			if ( resetWhat === 'all' ) {
+				$('.jq-toast-wrap').remove();
+			} else {
+				this._toastEl.remove();
+			}
 		}
 	};
 	
@@ -244,8 +248,8 @@ if ( typeof Object.create !== 'function' ) {
 		toast.init(options, this);
 
 		return {
-			reset : function () {
-				toast.reset();
+			reset : function ( what ) {
+				toast.reset( what );
 			}
 		}
 	};
