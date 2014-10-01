@@ -262,7 +262,9 @@ if ( typeof Object.create !== 'function' ) {
 		textColor: '#eee',
 		textAlign: 'left',
 		beforeShow: function () {},
-		afterShown: function () {}
+		afterShown: function () {},
+		beforeHide: function () {},
+		afterHidden: function () {}
 	};
 
 })( jQuery, window, document );
