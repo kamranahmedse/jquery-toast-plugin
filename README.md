@@ -2,7 +2,7 @@
 
 A plugin to show highly customizable notifications to the user. 
 
-[Imgur](http://i.imgur.com/fuwtO7j.png)
+<img src="http://i.imgur.com/fuwtO7j.png" />
 
 #How to use
 
