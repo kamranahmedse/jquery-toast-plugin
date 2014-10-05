@@ -11,6 +11,8 @@ A plugin to show highly customizable notifications to the user.
 
 To learn more about how to use and customize it, head to <a href="http://kamranahmedse.github.io/jquery-toast-plugin" target="_blank">http://kamranahmedse.github.io/jquery-toast-plugin</a>
 
+You can simply download the repo or if you are in rush the <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.min.css" target="_blank">minified CSS</a> or <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.css">non-minified CSS</a> can be found and <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.min.js" target="_blank">minified JS</a> and <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.js" target="_blank">non minified JS</a> can also be found.
+
 #Demo
 You can visit <a href="http://kamranahmedse.github.io/jquery-toast-plugin" target="_blank">http://kamranahmedse.github.io/jquery-toast-plugin</a> to view a number of demos, you can see how to use and also you can customize the plugin to match your needs.
 
