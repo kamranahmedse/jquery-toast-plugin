@@ -259,7 +259,7 @@ if ( typeof Object.create !== 'function' ) {
 		heading: '',
 		showHideTransition: 'fade',
 		allowToastClose: true,
-		hideAfter: 2000,
+		hideAfter: 5000,
 		stack: 5,
 		position: 'bottom-left',
 		bgColor: '#444',
