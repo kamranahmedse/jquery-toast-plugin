@@ -51,6 +51,3 @@ Please report any bugs or features you would like added.
 You'll be soon seeing the following features added in the plugin
 - Ability to add the icons through plugin `options` (Currently you can do so by custom CSS styles and passing HTML as the test), to make it a bit hasty
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kamranahmedse/jquery-toast-plugin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
