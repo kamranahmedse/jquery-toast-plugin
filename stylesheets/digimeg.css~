@@ -1,0 +1,101 @@
+* { margin: 0; padding: 0; }
+body { background-color: #f2f2f2; position: relative; font-family: 'segoe ui'; font-size: 12px; }
+
+
+.digimeg-nav-wrap { 
+	position: relative; 
+}
+.digimeg-nav-wrap .digimeg-main-nav {
+	/*position: absolute;
+	top:0px;
+	left: 0px;*/
+	display: block;
+	width: 100%;
+	background: #368ee0;
+}
+
+.digimeg-nav-wrap .digimeg-main-nav li {
+	list-style-type: none;
+	display: inline;
+	float: left;
+}
+
+.digimeg-nav-wrap .digimeg-main-nav li a {
+	display: block;
+	padding: 25px;
+	text-decoration: none;
+	font-size: 15px;
+	color: white;
+	position: relative;
+}
+
+.digimeg-nav-wrap .digimeg-main-nav li a:hover {
+	background: #ccc;
+	color: black;
+}
+
+.digimeg-group:after {
+	content: '.';
+	visibility: hidden;
+	clear: both;
+	display: block;
+	line-height: 0px;
+}
+
+.digimeg-sub-nav li {
+	display: block;
+	width: 100%;
+	background: white;
+}
+
+.digimeg-sub-nav>li{
+	/*border-bottom: 1px solid #8F7676;*/
+}
+
+.digimeg-nav-item-content {
+	padding: 30px;
+	color: black;
+}
+
+.digimeg-nav-item-content h2 {
+	font-size: 30px;
+	font-family: "segoe ui light";
+	font-weight: 400;
+}
+
+.digimeg-nav-item-content a {
+	color: black;
+}
+
+.digimeg-nav-chunk {
+	display: block;
+	width: 220px;
+	float: left;
+}
+
+.digimeg-nav-chunk ul li a{
+	font-size: 15px;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.digimeg-sub-nav {
+	position: relative;
+}
+
+.digimeg-sub-nav>li {
+	position: absolute;
+	top:0px;
+	display: none;
+}
+
+.digimeg-active-mark {
+	display: none;
+	position: absolute;
+	width: 0;
+	height: 0;
+	z-index: 102;
+	border-style: solid!important;
+	border-color: #ccc transparent transparent!important;
+	border-width: 8px 10px 0!important;
+}
