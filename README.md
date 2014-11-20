@@ -9,7 +9,7 @@ A plugin to show highly customizable notifications to the user.
 - Include the CSS and JS files
 - Simply do ```$.toast('Toast message to be shown')``` Of course it would be the world's simplest toast message but believe me **you can do a lot more** with the options.
 
-To learn more about how to use and customize it, head to <a href="http://kamranahmedse.github.io/jquery-toast-plugin" target="_blank">http://kamranahmedse.github.io/jquery-toast-plugin</a>
+To learn more about how to use and customize it, head to <a href="http://kdemos.github.io/jquery-toast-plugin" target="_blank">http://kdemos.github.io/jquery-toast-plugin</a>
 
 <hr>
 
@@ -18,7 +18,7 @@ You can simply download the repo or if you are in rush the <a href="https://raw.
 <hr>
 
 #Demo
-You can visit <a href="http://kamranahmedse.github.io/jquery-toast-plugin" target="_blank">http://kamranahmedse.github.io/jquery-toast-plugin</a> to view a number of demos, you can see how to use and also you can customize the plugin to match your needs.
+You can visit <a href="http://kdemos.github.io/jquery-toast-plugin" target="_blank">http://kdemos.github.io/jquery-toast-plugin</a> to view a number of demos, you can see how to use and also you can customize the plugin to match your needs.
 
 #Features
 <ul>
