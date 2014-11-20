@@ -69,9 +69,6 @@ if ( typeof Object.create !== 'function' ) {
 				this._toastEl.css('text-align', this.options.textAlign);
 			}
 		},
-		_insert_text: function() {
-
-		},
 		process: function () {
 			this.preInit();
 			this.setup();
