@@ -16,23 +16,24 @@ if ( typeof Object.create !== 'function' ) {
 		_positionClasses : ['bottom-left', 'bottom-right', 'top-right', 'top-left', 'bottom-center', 'top-center', 'mid-center'],
 
 		init: function (options, elem) {
-			
+			this._prepare_options(options, $.toast.options);
+			this.process();
+		},
+		_prepare_options: function(options, options_to_extend) {
 			var _options = {};
-			
 			if ( ( typeof options === 'string' ) || ( options instanceof Array ) ) {
 				_options.text = options;
 			} else {
 				_options = options;
 			}
-
-			this.options = $.extend( {}, $.toast.options, _options );
-			this.process();
+			this.options = $.extend( {}, options_to_extend, _options );
+		},
+		preInit: function() {
+			this._toastEl = $('<div></div>');
 		},
 		setup: function () {
-
-			var _toastEl = $('<div></div>'),
-				_toastContent = '';
-			_toastEl.addClass( 'jq-toast-single' );
+			var _toastContent = '';
+			this._toastEl.addClass( 'jq-toast-single' );
 
 			if ( this.options.allowToastClose ) {
 				_toastContent += '<span class="close-jq-toast-single">&times;</span>';
@@ -57,20 +58,22 @@ if ( typeof Object.create !== 'function' ) {
 				_toastContent += this.options.text;
 			}
 
-			_toastEl.html( _toastContent );
+			this._toastEl.html( _toastContent );
 
 			if ( this.options.bgColor ) {
-				_toastEl.css("background-color", this.options.bgColor);
-				_toastEl.css("color", this.options.textColor);
+				this._toastEl.css("background-color", this.options.bgColor);
+				this._toastEl.css("color", this.options.textColor);
 			};
 
 			if ( this.options.textAlign ) {
-				_toastEl.css('text-align', this.options.textAlign);
+				this._toastEl.css('text-align', this.options.textAlign);
 			}
+		},
+		_insert_text: function() {
 
-			this._toastEl = _toastEl;
 		},
 		process: function () {
+			this.preInit();
 			this.setup();
 			this.addToDom();
 			this.position();
@@ -240,6 +243,10 @@ if ( typeof Object.create !== 'function' ) {
 			} else {
 				this._toastEl.remove();
 			}
+		},
+		update: function(options) {
+			this._prepare_options(options, this.options);
+			this.setup();
 		}
 	};
 	
@@ -248,8 +255,11 @@ if ( typeof Object.create !== 'function' ) {
 		toast.init(options, this);
 
 		return {
-			reset : function ( what ) {
+			reset: function ( what ) {
 				toast.reset( what );
+			},
+			update: function(options) {
+				toast.update(options);
 			}
 		}
 	};
