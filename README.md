@@ -133,5 +133,5 @@ Please report any bugs or features you would like added.
 
 #Upcoming
 You'll be soon seeing the following features added in the plugin
-- Ability to add the icons through plugin `options` (Currently you can do so by custom CSS styles and passing HTML as the test), to make it a bit hasty
+- Ability to add the icons through plugin `options` (Currently you can do so by custom CSS styles and passing HTML as the text), to make it a bit hasty
 
