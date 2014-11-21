@@ -9,6 +9,7 @@ if ( typeof Object.create !== 'function' ) {
 	};
 }
 (function( $, window, document, undefined ) {
+
 	"use strict";
 	
 	var Toast = {
@@ -16,10 +17,11 @@ if ( typeof Object.create !== 'function' ) {
 		_positionClasses : ['bottom-left', 'bottom-right', 'top-right', 'top-left', 'bottom-center', 'top-center', 'mid-center'],
 
 		init: function (options, elem) {
-			this._prepare_options(options, $.toast.options);
+			this.prepareOptions(options, $.toast.options);
 			this.process();
 		},
-		_prepare_options: function(options, options_to_extend) {
+
+		prepareOptions: function(options, options_to_extend) {
 			var _options = {};
 			if ( ( typeof options === 'string' ) || ( options instanceof Array ) ) {
 				_options.text = options;
@@ -28,12 +30,22 @@ if ( typeof Object.create !== 'function' ) {
 			}
 			this.options = $.extend( {}, options_to_extend, _options );
 		},
-		preInit: function() {
-			this._toastEl = $('<div></div>');
+
+		process: function () {
+			this.setup();
+			this.addToDom();
+			this.position();
+			this.bindToast();
+			this.animate();
 		},
+
 		setup: function () {
+			
 			var _toastContent = '';
-			this._toastEl.addClass( 'jq-toast-single' );
+			
+			this._toastEl = this._toastEl || $('<div></div>', {
+				class : 'jq-toast-single'
+			});
 
 			if ( this.options.allowToastClose ) {
 				_toastContent += '<span class="close-jq-toast-single">&times;</span>';
@@ -69,14 +81,7 @@ if ( typeof Object.create !== 'function' ) {
 				this._toastEl.css('text-align', this.options.textAlign);
 			}
 		},
-		process: function () {
-			this.preInit();
-			this.setup();
-			this.addToDom();
-			this.position();
-			this.bindToast();
-			this.animate();
-		},
+
 		position: function () {
 			if ( ( typeof this.options.position === 'string' ) && ( $.inArray( this.options.position, this._positionClasses) !== -1 ) ) {
 
@@ -110,6 +115,7 @@ if ( typeof Object.create !== 'function' ) {
 				this._container.addClass( 'bottom-left' );
 			}
 		},
+
 		bindToast: function () {
 
 			var that = this;
@@ -160,12 +166,19 @@ if ( typeof Object.create !== 'function' ) {
 				});
 			};			
 		},
+
 		addToDom: function () {
+
 			 var _container = $('.jq-toast-wrap');
 			 
 			 if ( _container.length === 0 ) {
-			 	_container = $('<div class="jq-toast-wrap"></div>');
+			 	
+			 	_container = $('<div></div>',{
+			 		class: "jq-toast-wrap"
+			 	});
+
 			 	$('body').append( _container );
+
 			 } else if ( !this.options.stack || isNaN( parseInt(this.options.stack, 10) ) ) {
 			 	_container.empty();
 			 }
@@ -187,7 +200,9 @@ if ( typeof Object.create !== 'function' ) {
 
 		  	this._container = _container;
 		},
+
 		animate: function () {
+
 			var that = this;
 
 			this._toastEl.hide();
@@ -234,16 +249,21 @@ if ( typeof Object.create !== 'function' ) {
 				}, this.options.hideAfter);
 			};
 		},
+
 		reset: function ( resetWhat ) {
+
 			if ( resetWhat === 'all' ) {
 				$('.jq-toast-wrap').remove();
 			} else {
 				this._toastEl.remove();
 			}
+
 		},
+
 		update: function(options) {
-			this._prepare_options(options, this.options);
+			this.prepareOptions(options, this.options);
 			this.setup();
+			this.bindToast();
 		}
 	};
 	
@@ -252,11 +272,13 @@ if ( typeof Object.create !== 'function' ) {
 		toast.init(options, this);
 
 		return {
+			
 			reset: function ( what ) {
 				toast.reset( what );
 			},
-			update: function(options) {
-				toast.update(options);
+
+			update: function( options ) {
+				toast.update( options );
 			}
 		}
 	};
