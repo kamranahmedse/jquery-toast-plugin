@@ -9,7 +9,91 @@ A plugin to show highly customizable notifications to the user.
 - Include the CSS and JS files
 - Simply do ```$.toast('Toast message to be shown')``` Of course it would be the world's simplest toast message but believe me **you can do a lot more** with the options.
 
-To learn more about how to use and customize it, head to <a href="http://kdemos.github.io/jquery-toast-plugin" target="_blank">http://kdemos.github.io/jquery-toast-plugin</a>
+##Quick usage examples
+***Simple textual toast*** 
+```javascript
+// Non sticky version
+$.toast("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, consequuntur doloremque eveniet eius eaque dicta repudiandae illo ullam. Minima itaque sint magnam dolorum asperiores repudiandae dignissimos expedita, voluptatum vitae velit.")
+// Sticky version
+$.toast({
+  text : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, consequuntur doloremque eveniet eius eaque dicta repudiandae illo ullam. Minima itaque sint magnam dolorum asperiores repudiandae dignissimos expedita, voluptatum vitae velit.",
+  hideAfter : false
+})
+```
+
+***Toast using HTML as a text***
+```javascript
+// Non sticky
+$.toast("Let's test some HTML stuff... <a href='#'>github</a>")
+// sticky
+$.toast({
+  text : "<strong>Remember!</strong> You can <span style='font-weight: bold; color:red;' class='horribly-styled'>always</span> introduce your own × HTML and <span style='font-size: 18px;'>CSS</span> in the toast.",
+  hideAfter : false
+})
+```
+
+***Unordered list elements as the text of toast using array***
+```javascript
+// Non sticky version
+$.toast(["Ubuntu : One of it's kind", "Sublime Text : Productivity unleashed", "HeidiSQL : Just love it", "Github : Just Lovely"])
+// Sticky version
+$.toast({
+  text : ["Ubuntu : One of it's kind", "Sublime Text : Productivity unleashed", "HeidiSQL : Just love it", "Github : Just Lovely"],
+  hideAfter : false
+})
+```
+
+***Changing the animations***
+```javascript
+$.toast({ 
+  text : "Let's test some HTML stuff... <a href='#'>github</a>", 
+  showHideTransition : 'slide'  // It can be plain, fade or slide
+})
+```
+
+***Changing the formatting***
+```javascript
+$.toast({ 
+  text : "Let's test some HTML stuff... <a href='#'>github</a>", 
+  showHideTransition : 'slide',  // It can be plain, fade or slide
+  bgColor : 'blue',              // Background color for toast
+  textColor : '#eee',            // text color
+  allowToastClose : false,       // Show the close button or not
+  hideAfter : 5000,              // `false` to make it sticky or time in miliseconds to hide after
+  stack : 5,                     // `fakse` to show one stack at a time count showing the number of toasts that can be shown at once
+  textAlign : 'left',            // Alignment of text i.e. left, right, center
+  position : 'bottom-left'       // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values to position the toast on page
+})
+```
+
+***Resetting the toast***
+```javascript
+var myToast = $.toast('Some toast that needs to be removed.');
+myToast.reset(); // remove the toast "Some toast that needs to be removed"
+```
+What if I want to reset all the toasts at once? You may ask. Well in that case, you can do the following:
+```javascript
+$.toast().reset('all');
+```
+
+***Updating the toast***
+Suppose, you had shown some toast upon the page, a sticky toast for example and now you want to update the toast. You can do the following
+
+```javascript
+var myToast = $.toast({
+  text : 'Some toast that needs to show the success message after the ajax call.',
+  hideAfter : false,
+  bgColor : '#E01A31'
+});
+
+window.setTimeout(function(){
+  myToast.update({
+    text : '<strong>Updated after a few seconds</strong>',
+    bgColor : '#23B65D'
+  });
+}, 5000);
+```
+To learn more about how to use and customize it, head to <a href="http://kdemos.github.io/jquery-toast-plugin" target="_blank">http://kdemos.github.io/jquery-toast-plugin</a>. Also you can find a customizer there that will let you modify the look and feel of the toast however you like it.
 
 <hr>
 
