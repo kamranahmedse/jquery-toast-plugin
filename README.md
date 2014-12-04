@@ -4,6 +4,8 @@ A plugin to show highly customizable notifications to the user.
 
 <img src="http://i.imgur.com/fuwtO7j.png" />
 
+<img src="http://i.imgur.com/NoBWDI8.jpg" />
+
 #How to use
 
 - Include the CSS and JS files
