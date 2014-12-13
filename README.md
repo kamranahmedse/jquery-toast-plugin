@@ -12,7 +12,7 @@ A plugin to show highly customizable notifications to the user.
 - Simply do ```$.toast('Toast message to be shown')``` Of course it would be the world's simplest toast message but believe me **you can do a lot more** with the options.
 
 ##Quick usage examples
-***Simple textual toast*** 
+**Simple textual toast**
 ```javascript
 // Non sticky version
 $.toast("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, consequuntur doloremque eveniet eius eaque dicta repudiandae illo ullam. Minima itaque sint magnam dolorum asperiores repudiandae dignissimos expedita, voluptatum vitae velit.")
@@ -23,7 +23,7 @@ $.toast({
 })
 ```
 
-***Toast using HTML as a text***
+**Toast using HTML as a text**
 ```javascript
 // Non sticky
 $.toast("Let's test some HTML stuff... <a href='#'>github</a>")
@@ -34,7 +34,7 @@ $.toast({
 })
 ```
 
-***Unordered list elements as the text of toast using array***
+**Unordered list elements as the text of toast using array**
 ```javascript
 // Non sticky version
 $.toast(["Ubuntu : One of it's kind", "Sublime Text : Productivity unleashed", "HeidiSQL : Just love it", "Github : Just Lovely"])
@@ -45,7 +45,7 @@ $.toast({
 })
 ```
 
-***Changing the animations***
+**Changing the animations**
 ```javascript
 $.toast({ 
   text : "Let's test some HTML stuff... <a href='#'>github</a>", 
@@ -53,7 +53,7 @@ $.toast({
 })
 ```
 
-***Changing the formatting***
+**Changing the formatting**
 ```javascript
 $.toast({ 
   text : "Let's test some HTML stuff... <a href='#'>github</a>", 
@@ -68,7 +68,7 @@ $.toast({
 })
 ```
 
-***Resetting the toast***
+**Resetting the toast**
 ```javascript
 var myToast = $.toast('Some toast that needs to be removed.');
 myToast.reset(); // remove the toast "Some toast that needs to be removed"
@@ -78,7 +78,7 @@ What if I want to reset all the toasts at once? You may ask. Well in that case, 
 $.toast().reset('all');
 ```
 
-***Updating the toast***
+**Updating the toast**
 Suppose, you had shown some toast upon the page, a sticky toast for example and now you want to update the toast. You can do the following
 
 ```javascript
