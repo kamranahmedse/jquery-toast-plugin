@@ -15,6 +15,7 @@ if ( typeof Object.create !== 'function' ) {
 	var Toast = {
 
 		_positionClasses : ['bottom-left', 'bottom-right', 'top-right', 'top-left', 'bottom-center', 'top-center', 'mid-center'],
+		_defaultIcons : ['success', 'error', 'info', 'warning'],
 
 		init: function (options, elem) {
 			this.prepareOptions(options, $.toast.options);
@@ -80,6 +81,10 @@ if ( typeof Object.create !== 'function' ) {
 			if ( this.options.textAlign ) {
 				this._toastEl.css('text-align', this.options.textAlign);
 			}
+
+			if ( this.options.icon !== false ) {
+				this._toastEl.addClass('jq-has-icon');
+			};
 		},
 
 		position: function () {
@@ -290,6 +295,7 @@ if ( typeof Object.create !== 'function' ) {
 		allowToastClose: true,
 		hideAfter: 5000,
 		stack: 5,
+		icon: false,
 		position: 'bottom-left',
 		bgColor: '#444',
 		textColor: '#eee',

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo - Toast Plugin</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/jquery.toast.css">
+    <style type="text/css">
+        * { font-family: 'Roboto Slab', serif; margin: 0; padding: 0; }
+        hr { border: 1px solid #ccc; margin-bottom: 20px; }
+        h1, h2 { margin: 20px 0px 10px; }
+        a { text-decoration: none;}
+        .container { display: block; width: 1200px; margin: auto; }
+        strong { padding-bottom: 1px; border-bottom: 1px dotted; }
+        p { margin: 10px 0px; }
+        code { font-family: monospace; color: #2d2d2d; background: whitesmoke; display: block; padding: 10px; border: 1px solid #ccc; word-wrap: break-word;}
+        a.eval-js { color: whitesmoke; padding: 5px 10px; display: inline-block; margin-bottom: 10px; background: #2d2d2d; border-radius: 2px; }
+        span.muted { font-size: 17px; color: #8B7373; }
+        span.code { font-family: monospace; color: #2d2d2d; background: whitesmoke; padding: 5px; border: 1px solid #ccc; }
+        div.code-runner { margin: 20px 20px;}
+        ul, ol { margin: 10px 50px; }
+        ul li { margin-bottom: 10px; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; margin: 20px 0px;">Jquery Toast Plugin</h1>
+        <hr>
+            
+        <p>To generate a <strong>most simple toast</strong>, all you have to do is</p>
+
+        <div class="code-runner">
+            <a class="eval-js" href="#">Run code</a>
+            <pre><code>$.toast('Here you can put the text of the toast')</code></pre>
+        </div>
+        
+        <h1>Options</h1>
+        <p>Of course that is not all what you can do using this plugin, there are a lot of other options. Let's start explaining each, one by one</p>
+        <p>You should note that, whenever you are going to use options, you have to pass an <span class="code">options</span> object and specify the text as follows:</p>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run code</a>
+<pre><code>$.toast({
+    text: 'This will become the toast message'
+})</code></pre>
+        </div>
+        
+        <h2><span class="muted">1.</span> Specifying the heading of toast message</h2>
+        <p>You can use the heading to set the <span class="code">heading</span> property to set the heading of the toast message</p>
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Headings',
+    text: 'You can use the `heading` property to specify the heading of the toast message.',
+})</code></pre>
+        </div>
+
+        <h2><span class="muted">2.</span> Making them sticky:</h2>
+        <p>There will be times, when you will want to have <strong>sticky toasts</strong>. To make them <strong>sticky</strong>, all you have to do is set the <span class="code">hideAfter</span> to <span class="code">false</span>. Here is a sticky toast</p>
+        
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    text: 'Set the `hideAfter` property to false and the toast will become sticky.',
+    hideAfter: false
+})</code></pre>
+        </div>
+        
+        <p><sup>*</sup> <span class="code">hideAfter</span> property is basically used to set the timer after which the toast will get hidden. But you can set it to false in order to achieve the sticky toasts.</p>
+        
+        <h2><span class="muted">3.</span> Changing the toast hide timer</h2>
+        <p>You can use the property from the above option i.e. <span class="code">hideAfter</span> to change the timer after which toast gets hidden. You have to specify the timer in milliseconds</p>
+        
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    text: 'Set the `hideAfter` property to milliseconds and the toast will hide after the specified milli seconds.',
+    hideAfter: 5000   // in milli seconds
+})</code></pre>
+        </div>
+
+        <h2><span class="muted">4.</span> Changing the show/hide animation</h2>
+        <p>You can use <span class="code">showHideTransition</span> property to set the animation. Following are the available options:</p>
+        <ul>
+            <li><span class="code">fade</span> for fade transitions</li>
+            <li><span class="code">slide</span> for slide up and down transitions</li>
+            <li><span class="code">plain</span> simple show from and hide to corner transition</li>
+        </ul>
+        
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    text: 'Set the `showHideTransition` property to fade|plain|slide to achieve different transitions',
+    heading: 'Slide transition',
+    showHideTransition: 'slide'
+})</code></pre>
+        </div>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    text: 'Set the `showHideTransition` property to fade|plain|slide to achieve different transitions',
+    heading: 'Fade transition',
+    showHideTransition: 'fade'
+})</code></pre>
+        </div>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    text: 'Set the `showHideTransition` property to fade|plain|slide to achieve different transitions',
+    heading: 'Plain transition',
+    showHideTransition: 'plain'
+})</code></pre>
+        </div>
+
+        <h2><span class="muted">5.</span> Making the toast closeable or not</h2>
+        <p>You can use <span class="code">allowToastClose</span> to allow the user to close the toast or not. The only thing that this option does is make that little cross button show or hide itself</p>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Closeable Toast',
+    text: 'Set the `allowToastClose` property to true|false to make the toast closeable or not',
+    allowToastClose: true
+})</code></pre>
+        </div>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Non closeable Toast',
+    text: 'Set the `allowToastClose` property to true|false to make the toast closeable or not',
+    allowToastClose: false
+})</code></pre>
+        </div>
+    
+        <h2><span class="muted">6.</span> Setting the toast stack</h2>
+        <p><span class="code">stack</span> property can be used to specify how many maximum toasts you want to show at any point of time. By default this property is set to 5</p>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Stack',
+    text: 'If set to a number, it will show that number of toasts at max at a time',
+    stack: 4
+})</code></pre>
+        </div>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'No stacking',
+    text: 'If set to false, there will be only one toast at once.',
+    stack: false
+})</code></pre>
+        </div>
+
+        <p><strong>Note</strong> Hit the run button multiple times to test these demos.</p>
+
+        <h2><span class="muted">7.</span> Positioning the toast</h2>
+        <p><span class="code">position</span> property can be used to specify the position. There are following predefined positions which you can use:</p>
+        <ul>
+            <li><span class="code">bottom-left</span> value to show the toast at bottom left position</li>
+            <li><span class="code">bottom-right</span> value to show the toast at bottom right position</li>
+            <li><span class="code">bottom-center</span> value to..</li>
+            <li><span class="code">top-right</span> value to..</li>
+            <li><span class="code">top-left</span> value to..</li>
+            <li><span class="code">top-center</span> value to..</li>
+            <li><span class="code">mid-center</span> value to..</li>
+            <li><span class="code">{ top: '-', bottom: '-', left: '-', right: '-' }</span> javascript object with positioning properties as you set in CSS</li>
+        </ul>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
+    heading: 'Stack',
+    text: 'If set to a number, it will show that number of toasts at max at a time',
+    position: 'bottom-left',
+    stack: false
+})</code></pre>
+        </div>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
+    heading: 'Stack',
+    text: 'If set to a number, it will show that number of toasts at max at a time',
+    position: 'bottom-right',
+    stack: false
+})</code></pre>
+        </div>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
+    heading: 'Stack',
+    text: 'If set to a number, it will show that number of toasts at max at a time',
+    position: 'bottom-center',
+    stack: false
+})</code></pre>
+        </div>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
+    heading: 'Stack',
+    text: 'If set to a number, it will show that number of toasts at max at a time',
+    position: 'top-left',
+    stack: false
+})</code></pre>
+        </div>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
+    heading: 'Stack',
+    text: 'If set to a number, it will show that number of toasts at max at a time',
+    position: 'top-right',
+    stack: false
+})</code></pre>
+        </div>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
+    heading: 'Stack',
+    text: 'If set to a number, it will show that number of toasts at max at a time',
+    position: 'top-center',
+    stack: false
+})</code></pre>
+        </div>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
+    heading: 'Stack',
+    text: 'If set to a number, it will show that number of toasts at max at a time',
+    position: 'mid-center',
+    stack: false
+})</code></pre>
+        </div>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
+    heading: 'Stack',
+    text: 'If set to a number, it will show that number of toasts at max at a time',
+    position: {
+        left: 120,
+        top: 120
+    },
+    stack: false
+})</code></pre>
+        </div>
+    
+        <p><strong>Note</strong> It should be noted that, once you change the position of toast by using the `position` property, you'll have to reset the position for the next toasts, if you want them to appear at their default position i.e. the bottom left corner. Or else, each new toast generated will be appearing at the last position i.e. where you displayed the last positioned toast. You can reset the toast position by.</p>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast().reset('all');</code></pre>
+        </div>
+
+        <h3 style="margin: 10px 0px;">Generate toasts without icons</h3>
+        <p><a href="#" data-toastheading="No icons with it" data-toasttext="Now you can seemlessly generate warnings using the icon property in the options" class="generateDemo">Click to generate a <strong>simple toast</strong></a></p>
+
+        <h3 style="margin: 10px 0px;">Generate Toasts having icons</h3>
+        <p><a href="#" data-icontype="warning" data-toastheading="Warning" data-toasttext="Now you can seemlessly generate warnings using the icon property in the options" class="generateDemo">Click to generate a <strong>warning text</strong></a></p>
+        <p><a href="#" data-icontype="success" data-toastheading="Success" data-toasttext="Here is some kind of success message with a success icon that you can notice at the left side." class="generateDemo">Click to generate a <strong>success text</strong></a></p>
+        <p><a href="#" data-icontype="error" data-toastheading="Error" data-toasttext="An unexpected error occured while trying to show you the toast! ..Just kidding, it is just a message, toast is right in front of you." class="generateDemo">Click to generate a <strong>error text</strong></a></p>
+        <p><a href="#" data-icontype="info" data-toastheading="Info" data-toasttext="Now you can add icons to the toasts as well." class="generateDemo">Click to generate a <strong>info text</strong></a></p>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.toast.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            
+            $('.eval-js').on('click', function ( e ) {
+                e.preventDefault();
+
+                var code = $(this).siblings('pre').find('code').text();
+                code.replace("<span class='hidden'>", '');
+                code.replace("</span");
+
+                eval( code );
+            });
+
+            $('.generateDemo').on('click', function () {
+
+                var iconType = $(this).data('icontype') || false,
+                    toastHeading  = $(this).data('toastheading'),
+                    toastText = $(this).data('toasttext');
+
+                $.toast({
+                    heading: toastHeading,
+                    text: toastText,
+                    icon: iconType,
+                    hideAfter: false
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
