@@ -27,15 +27,80 @@
     <div class="container">
         <h1 style="text-align: center; margin: 20px 0px;">Jquery Toast Plugin</h1>
         <hr>
-            
-        <p>To generate a <strong>most simple toast</strong>, all you have to do is</p>
+        
+        <h1>Index</h1>
+        <ul>
+            <li><a href="#quick-demos">Quick Demos</a></li>
+            <li>
+                <a href="#options">Options</a>
+                <ul>
+                    <li><a href="#toast-head">Specifying the heading</a></li>
+                    <li><a href="#sticky-toast">Making them sticky</a></li>
+                    <li><a href="#toast-timer">Changing the toast hide timer</a></li>
+                    <li><a href="#showhide-animation">Changing the show/hide animation</a></li>
+                    <li><a href="#closeable-toasts">Making the toast closeable or not</a></li>
+                    <li><a href="#toasts-stack">Setting the toast stack</a></li>
+                    <li><a href="#toasts-positioning">Positioning the toast</a></li>
+                    <li><a href="#toasts-icons">Messages with icons</a></li>
+                    <li><a href="#toasts-bg-color">Background &amp; text color</a></li>
+                    <li><a href="#toasts-text-alignment">Setting the text alignment</a></li>
+                    <li><a href="#toasts-events">Toast Events</a></li>
+                    <li><a href="#updating-toasts">Updating Toasts</a></li>
+                    <li><a href="#resetting-toasts">Resetting Toasts</a></li>
+                </ul>
+            </li>
+        </ul>
 
+        <h1 id="quick-demos">Quick Demos</h1>
+
+        <p>To generate a <strong>most simple toast</strong>, all you have to do is</p>
         <div class="code-runner">
             <a class="eval-js" href="#">Run code</a>
             <pre><code>$.toast('Here you can put the text of the toast')</code></pre>
         </div>
-        
-        <h1>Options</h1>
+
+        <p>There are different kinds of toast types:</p>
+        <div class="code-runner">
+            <a class="eval-js" href="#">Run code</a>
+<pre><code>$.toast({
+    heading: 'Information',
+    text: 'Now you can add icons to generate different kinds of toasts',
+    showHideTransition: 'slide',
+    icon: 'info'
+})</code></pre>
+        </div>
+
+        <div class="code-runner">
+            <a class="eval-js" href="#">Run code</a>
+<pre><code>$.toast({
+    heading: 'Error',
+    text: 'Report any &lt;a href="https://github.com/kamranahmedse/jquery-toast-plugin/issues"&gt;issues&lt;/a&gt;',
+    showHideTransition: 'fade',
+    icon: 'error'
+})</code></pre>
+        </div>
+
+        <div class="code-runner">
+            <a class="eval-js" href="#">Run code</a>
+<pre><code>$.toast({
+    heading: 'Warning',
+    text: 'It is going to be supper easy for you to use ;)',
+    showHideTransition: 'plain',
+    icon: 'warning'
+})</code></pre>
+        </div>
+
+        <div class="code-runner">
+            <a class="eval-js" href="#">Run code</a>
+<pre><code>$.toast({
+    heading: 'Success',
+    text: 'And these were just the basic demos! Scroll down to check further details on how to customize the output.',
+    showHideTransition: 'slide',
+    icon: 'success'
+})</code></pre>
+        </div>
+
+        <h1 id="options">Options</h1>
         <p>Of course that is not all what you can do using this plugin, there are a lot of other options. Let's start explaining each, one by one</p>
         <p>You should note that, whenever you are going to use options, you have to pass an <span class="code">options</span> object and specify the text as follows:</p>
 
@@ -46,7 +111,34 @@
 })</code></pre>
         </div>
         
-        <h2><span class="muted">1.</span> Specifying the heading of toast message</h2>
+        <p>The text can be an array:</p>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run code</a>
+<pre><code>$.toast({
+    heading: 'How to contribute?!',
+    text: [
+        'Fork the repository', 
+        'Improve/extend the functionality', 
+        'Create a pull request'
+    ],
+    icon: 'info'
+})</code></pre>
+        </div>
+    
+        <p>Or put some HTML in the text</p>
+        
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run code</a>
+<pre><code>$.toast({
+    heading: 'Can I add &lt;em&gt;icons&lt;/em&gt;?',
+    text: 'Yes! check this &lt;a href="https://github.com/kamranahmedse/jquery-toast-plugin/commits/master"&gt;update&lt;/a&gt;.',
+    hideAfter: false,
+    icon: 'success'
+})</code></pre>
+        </div>
+
+        <h2 id="toast-head"><span class="muted">1.</span> Specifying the heading of toast message</h2>
         <p>You can use the heading to set the <span class="code">heading</span> property to set the heading of the toast message</p>
         <div class="code-runner">
             <a href="#" class="eval-js">Run Code</a>
@@ -56,7 +148,7 @@
 })</code></pre>
         </div>
 
-        <h2><span class="muted">2.</span> Making them sticky:</h2>
+        <h2 id="sticky-toast"><span class="muted">2.</span> Making them sticky:</h2>
         <p>There will be times, when you will want to have <strong>sticky toasts</strong>. To make them <strong>sticky</strong>, all you have to do is set the <span class="code">hideAfter</span> to <span class="code">false</span>. Here is a sticky toast</p>
         
         <div class="code-runner">
@@ -69,7 +161,7 @@
         
         <p><sup>*</sup> <span class="code">hideAfter</span> property is basically used to set the timer after which the toast will get hidden. But you can set it to false in order to achieve the sticky toasts.</p>
         
-        <h2><span class="muted">3.</span> Changing the toast hide timer</h2>
+        <h2 id="toast-timer"><span class="muted">3.</span> Changing the toast hide timer</h2>
         <p>You can use the property from the above option i.e. <span class="code">hideAfter</span> to change the timer after which toast gets hidden. You have to specify the timer in milliseconds</p>
         
         <div class="code-runner">
@@ -80,7 +172,7 @@
 })</code></pre>
         </div>
 
-        <h2><span class="muted">4.</span> Changing the show/hide animation</h2>
+        <h2 id="showhide-animation"><span class="muted">4.</span> Changing the show/hide animation</h2>
         <p>You can use <span class="code">showHideTransition</span> property to set the animation. Following are the available options:</p>
         <ul>
             <li><span class="code">fade</span> for fade transitions</li>
@@ -115,7 +207,7 @@
 })</code></pre>
         </div>
 
-        <h2><span class="muted">5.</span> Making the toast closeable or not</h2>
+        <h2 id="closeable-toasts"><span class="muted">5.</span> Making the toast closeable or not</h2>
         <p>You can use <span class="code">allowToastClose</span> to allow the user to close the toast or not. The only thing that this option does is make that little cross button show or hide itself</p>
 
         <div class="code-runner">
@@ -136,7 +228,7 @@
 })</code></pre>
         </div>
     
-        <h2><span class="muted">6.</span> Setting the toast stack</h2>
+        <h2 id="toasts-stack"><span class="muted">6.</span> Setting the toast stack</h2>
         <p><span class="code">stack</span> property can be used to specify how many maximum toasts you want to show at any point of time. By default this property is set to 5</p>
 
         <div class="code-runner">
@@ -159,7 +251,7 @@
 
         <p><strong>Note</strong> Hit the run button multiple times to test these demos.</p>
 
-        <h2><span class="muted">7.</span> Positioning the toast</h2>
+        <h2 id="toasts-positioning"><span class="muted">7.</span> Positioning the toast</h2>
         <p><span class="code">position</span> property can be used to specify the position. There are following predefined positions which you can use:</p>
         <ul>
             <li><span class="code">bottom-left</span> value to show the toast at bottom left position</li>
@@ -262,7 +354,7 @@
 <pre><code>$.toast().reset('all');</code></pre>
         </div>
     
-        <h2><span class="muted">8.</span> Messages with icons</h2>
+        <h2 id="toasts-icons"><span class="muted">8.</span> Messages with icons</h2>
         <p><span class="code">icon</span> property can be used to specify the predefined types of toasts. Following are the predefined types:</p>
         <ul>
             <li><span class="code">info</span> generates a toast with information icon</li>
@@ -307,7 +399,7 @@
 })</code></pre>
         </div>
             
-        <h2><span class="muted">9.</span> Background &amp; text color</h2>
+        <h2 id="toasts-bg-color"><span class="muted">9.</span> Background &amp; text color</h2>
         <p><span class="code">bgColor</span> property is used to specify the background color of the toast message. Default is '#444'</p>
         <p><span class="code">textColor</span> property is used to specify the text color of the toast message. Default is '#eee'</p>
             
@@ -319,6 +411,97 @@
     bgColor: '#FF1356',
     textColor: 'white'
 })</code></pre>
+        </div>
+
+        <h2 id="toasts-text-alignment"><span class="muted">10.</span> Setting the text alignment</h2>
+        <p><span class="code">textAlign</span> property is used to set the alignment of text inside the toast. Permitted values are:</p>
+        <ul>
+            <li><span class="code">left</span></li>
+            <li><span class="code">right</span></li>
+            <li><span class="code">center</span></li>
+        </ul>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    text: 'Processing! Please wait..',
+    textAlign: 'center'
+})</code></pre>
+        </div>
+            
+        <h2 id="toasts-events"><span class="muted">11.</span> Toast Events</h2>
+        <p>Toast exposes the following events for you to bind to whatever you want</p>
+        <ul>
+            <li><span class="code">beforeShow</span> will be triggered right before the toast is about to appear</li>
+            <li><span class="code">afterShown</span> will be triggered after the toast has appeared</li>
+            <li><span class="code">beforeHide</span> will be triggered before the toast is about to hide</li>
+            <li><span class="code">afterHidden</span> will be triggered right after the toast gets hidden</li>
+        </ul>
+            
+        <div class="code-runner">
+            <a href="#" class="eval-js"><span class='hidden'>$.toast().reset('all');</span>Run Code</a>
+<pre><code>$.toast({
+    text: 'Triggers the events',
+
+    beforeShow: function () {
+        alert('The toast is about to appear');
+    },
+
+    afterShown: function () {
+        alert('Toast has appeared.');
+    },
+
+    beforeHide: function () {
+        alert('Toast is about to hide.');
+    },
+
+    afterHidden: function () {
+        alert('Toast has been hidden.');
+    }
+})</code></pre>
+        </div>
+    
+        <h2 id="updating-toasts"><span class="muted">12.</span> Updating Toasts</h2>
+        <p>If you have a reference to a toast and want to update that, you can do so by calling the <span class="code">update</span> method on the instance.</p>
+
+        <div class="code-runner">
+        <a href="#" class="eval-js">Run Code</a>
+<pre><code>
+var myToast = $.toast({
+    heading: 'Information',
+    text: 'Here is some information that will be later on turned to an error',
+    icon: 'info',
+    hideAfter: false
+});
+
+// Update the toast after three seconds.
+window.setTimeout(function(){
+    myToast.update({
+        heading: 'Error',
+        text: 'Here is an information that changed to error',
+        icon: 'error',
+        hideAfter: false
+    });    
+}, 3000)
+
+</code></pre>
+        </div>
+
+        <h2 id="resetting-toasts"><span class="muted">13.</span> Resetting Toasts</h2>
+        <p>If you have the reference to a specific toast, you can reset that by doing the following</p>
+
+        <div class="code-runner">
+<pre><code>
+var myToast = $.toast('Some toast that needs to be removed.');
+myToast.reset(); // remove the toast "Some toast that needs to be removed"
+</code></pre>
+        </div>
+        
+        <p>If you do not have the reference to a specific toast and want to reset every toast, do the following:</p>
+        <div class="code-runner">
+<pre><code>
+$.toast().reset('all');
+</code></pre>
         </div>
 
     </div>
