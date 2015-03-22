@@ -73,8 +73,11 @@ if ( typeof Object.create !== 'function' ) {
 
             this._toastEl.html( _toastContent );
 
-            if ( this.options.bgColor ) {
+            if ( this.options.bgColor !== false ) {
                 this._toastEl.css("background-color", this.options.bgColor);
+            };
+
+            if ( this.options.textColor !== false ) {
                 this._toastEl.css("color", this.options.textColor);
             };
 
@@ -300,10 +303,10 @@ if ( typeof Object.create !== 'function' ) {
         hideAfter: 5000,
         stack: 5,
         position: 'bottom-left',
-        bgColor: '#444',
-        icon: false,
-        textColor: '#eee',
+        bgColor: false,
+        textColor: false,
         textAlign: 'left',
+        icon: false,
         beforeShow: function () {},
         afterShown: function () {},
         beforeHide: function () {},

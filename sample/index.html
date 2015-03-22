@@ -175,8 +175,8 @@
         <div class="code-runner">
             <a href="#" class="eval-js">Run Code</a>
 <pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
-    heading: 'Stack',
-    text: 'If set to a number, it will show that number of toasts at max at a time',
+    heading: 'Positioning',
+    text: 'Specify the custom position object or use one of the predefined ones',
     position: 'bottom-left',
     stack: false
 })</code></pre>
@@ -185,8 +185,8 @@
         <div class="code-runner">
             <a href="#" class="eval-js">Run Code</a>
 <pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
-    heading: 'Stack',
-    text: 'If set to a number, it will show that number of toasts at max at a time',
+    heading: 'Positioning',
+    text: 'Specify the custom position object or use one of the predefined ones',
     position: 'bottom-right',
     stack: false
 })</code></pre>
@@ -195,8 +195,8 @@
         <div class="code-runner">
             <a href="#" class="eval-js">Run Code</a>
 <pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
-    heading: 'Stack',
-    text: 'If set to a number, it will show that number of toasts at max at a time',
+    heading: 'Positioning',
+    text: 'Use the predefined ones, or specify a custom object',
     position: 'bottom-center',
     stack: false
 })</code></pre>
@@ -205,8 +205,8 @@
         <div class="code-runner">
             <a href="#" class="eval-js">Run Code</a>
 <pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
-    heading: 'Stack',
-    text: 'If set to a number, it will show that number of toasts at max at a time',
+    heading: 'Positioning',
+    text: 'Use the predefined ones, or specify a custom object',
     position: 'top-left',
     stack: false
 })</code></pre>
@@ -215,8 +215,8 @@
         <div class="code-runner">
             <a href="#" class="eval-js">Run Code</a>
 <pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
-    heading: 'Stack',
-    text: 'If set to a number, it will show that number of toasts at max at a time',
+    heading: 'Positioning',
+    text: 'Use the predefined ones, or specify a custom position object.',
     position: 'top-right',
     stack: false
 })</code></pre>
@@ -225,8 +225,8 @@
         <div class="code-runner">
             <a href="#" class="eval-js">Run Code</a>
 <pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
-    heading: 'Stack',
-    text: 'If set to a number, it will show that number of toasts at max at a time',
+    heading: 'Positioning',
+    text: 'Use the predefined ones, or specify a custom position object.',
     position: 'top-center',
     stack: false
 })</code></pre>
@@ -235,8 +235,8 @@
         <div class="code-runner">
             <a href="#" class="eval-js">Run Code</a>
 <pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
-    heading: 'Stack',
-    text: 'If set to a number, it will show that number of toasts at max at a time',
+    heading: 'Positioning',
+    text: 'Use the predefined ones, or specify a custom position object.',
     position: 'mid-center',
     stack: false
 })</code></pre>
@@ -245,8 +245,8 @@
         <div class="code-runner">
             <a href="#" class="eval-js">Run Code</a>
 <pre><code><span class='hidden'>$.toast().reset('all');</span>$.toast({
-    heading: 'Stack',
-    text: 'If set to a number, it will show that number of toasts at max at a time',
+    heading: 'Positioning',
+    text: 'Use the predefined ones, or specify a custom position object.',
     position: {
         left: 120,
         top: 120
@@ -261,15 +261,66 @@
             <a href="#" class="eval-js">Run Code</a>
 <pre><code>$.toast().reset('all');</code></pre>
         </div>
+    
+        <h2><span class="muted">8.</span> Messages with icons</h2>
+        <p><span class="code">icon</span> property can be used to specify the predefined types of toasts. Following are the predefined types:</p>
+        <ul>
+            <li><span class="code">info</span> generates a toast with information icon</li>
+            <li><span class="code">warning</span> generates a toast with warning icon</li>
+            <li><span class="code">error</span> generates a toast with error icon</li>
+            <li><span class="code">success</span> generates a toast with success icon</li>
+        </ul>
+        
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Warning',
+    text: 'Now you can seemlessly generate warnings using the icon property in the options',
+    icon: 'warning'
+})</code></pre>
+        </div>
+        
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Success',
+    text: 'Here is some kind of success message with a success icon that you can notice at the left side.',
+    icon: 'success'
+})</code></pre>
+        </div>
+    
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Error',
+    text: 'An unexpected error occured while trying to show you the toast! ..Just kidding, it is just a message, toast is right in front of you.',
+    icon: 'error'
+})</code></pre>
+        </div>
+    
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Information',
+    text: 'Now you can add icons to the toasts as well.',
+    icon: 'info'
+})</code></pre>
+        </div>
+            
+        <h2><span class="muted">9.</span> Background &amp; text color</h2>
+        <p><span class="code">bgColor</span> property is used to specify the background color of the toast message. Default is '#444'</p>
+        <p><span class="code">textColor</span> property is used to specify the text color of the toast message. Default is '#eee'</p>
+            
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Colors',
+    text: 'Colors are specified using `bgColor` and `textColor` properties.',
+    bgColor: '#FF1356',
+    textColor: 'white'
+})</code></pre>
+        </div>
 
-        <h3 style="margin: 10px 0px;">Generate toasts without icons</h3>
-        <p><a href="#" data-toastheading="No icons with it" data-toasttext="Now you can seemlessly generate warnings using the icon property in the options" class="generateDemo">Click to generate a <strong>simple toast</strong></a></p>
-
-        <h3 style="margin: 10px 0px;">Generate Toasts having icons</h3>
-        <p><a href="#" data-icontype="warning" data-toastheading="Warning" data-toasttext="Now you can seemlessly generate warnings using the icon property in the options" class="generateDemo">Click to generate a <strong>warning text</strong></a></p>
-        <p><a href="#" data-icontype="success" data-toastheading="Success" data-toasttext="Here is some kind of success message with a success icon that you can notice at the left side." class="generateDemo">Click to generate a <strong>success text</strong></a></p>
-        <p><a href="#" data-icontype="error" data-toastheading="Error" data-toasttext="An unexpected error occured while trying to show you the toast! ..Just kidding, it is just a message, toast is right in front of you." class="generateDemo">Click to generate a <strong>error text</strong></a></p>
-        <p><a href="#" data-icontype="info" data-toastheading="Info" data-toasttext="Now you can add icons to the toasts as well." class="generateDemo">Click to generate a <strong>info text</strong></a></p>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
