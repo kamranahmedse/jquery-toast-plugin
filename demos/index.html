@@ -25,6 +25,8 @@
         span.c { color: #F7BCBC; padding-left: 30px; }
         .plugin-options label { display: inline-block; width: 265px; }
         span.toast-position span.k { display: inline; } 
+        .toast-index .muted { display: block; color: #AD9D9D; }
+        .toast-index .muted:hover { color: #333; }
     </style>
 </head>
 <body>
@@ -33,10 +35,12 @@
         <hr>
         
         <h1>Index</h1>
-        <ul>
-            <li><a href="#quick-demos">Quick Demos</a> <span class="muted">Some quick demos</span>.</li>
+        <ul class="toast-index">
+            <li><a href="#quick-demos">Quick Demos</a> <span class="muted">Some quick demos and the code to generate that, if you are in a hurry!</span></li>
+            <li><a href="#toast-generator">Generator</a> <span class="muted">A generator for you to <strong>easily generate the code for the kind of toast you want</strong>, so that <strong>you don't have to go through the documentation!</strong></span></li>
             <li>
                 <a href="#options">Options</a>
+                <span class="muted">Each of the options is accompanied by a demo explaining that option.</span>
                 <ul>
                     <li><a href="#toast-head">Specifying the heading</a></li>
                     <li><a href="#sticky-toast">Making them sticky</a></li>
@@ -510,8 +514,8 @@ $.toast().reset('all');
 
         
 
-                <div class="plugin-options">
-          <h3>Customize Plugin</h3>
+    <div class="plugin-options">
+          <h1 id="toast-generator">Customize Plugin</h1>
 
           <p>
             <label for="toast-text">Text</label>
