@@ -34,7 +34,7 @@
         
         <h1>Index</h1>
         <ul>
-            <li><a href="#quick-demos">Quick Demos</a></li>
+            <li><a href="#quick-demos">Quick Demos</a> <span class="muted">Some quick demos</span>.</li>
             <li>
                 <a href="#options">Options</a>
                 <ul>
@@ -598,16 +598,29 @@ $.toast().reset('all');
               </li>
             </ul>
           </div>
-
-          <p>
-            <label for="toast-bg">Background Color</label>
-            <input type="color" id="toast-bg" class="toast-bg" value="#444444">
-          </p>
           
-          <p>
-            <label for="toast-text-color">Text Color</label>
-            <input type="color" id="toast-text-color" class="toast-text-color" value="#eeeeee">
+          <p class="">
+            <label for="text-align">Icon</label>
+            <select name="icon-type" id="icon-type" class="text-align">
+              <option value="">-- No icon --</option>
+              <option selected="selected" value="warning">Warning</option>
+              <option value="success">Success</option>
+              <option value="error">Error</option>
+              <option value="info">Information</option>
+            </select>
           </p>
+
+          <div class="custom-color-info" style="display: none;">
+              <p>
+                <label for="toast-bg">Background Color</label>
+                <input type="color" id="toast-bg" class="toast-bg" value="#444444">
+              </p>
+              
+              <p>
+                <label for="toast-text-color">Text Color</label>
+                <input type="color" id="toast-text-color" class="toast-text-color" value="#eeeeee">
+              </p>
+          </div>
 
           <p class="">
             <label for="text-align">Text Alignment</label>
@@ -633,14 +646,15 @@ $.toast().reset('all');
 <span class="nd">$</span>.<span class="nf">toast</span>({
     <span class="toast-text-line"><span class="k">text</span>: "<span class="toast-text s">Hey there fellas, here is a simple toast. Change the options above and then see the code that generates that toast</span>", <span class="c">// Text that is to be shown in the toast</span></span>
     <span class="toast-heading-line"><span class="k">heading</span>: '<span class="toast-heading s">How to use</span>', <span class="c">// Optional heading to be shown on the toast</span></span>
+    <span class="toast-icon-line"><span class="k">icon</span>: '<span class="toast-icon s">warning</span>', <span class="c">// Type of toast icon</span></span>
     <span class="toast-transition-line"><span class="k">showHideTransition</span>: '<span class="toast-transition s">fade</span>', <span class="c">// fade, slide or plain</span></span>
     <span class="toast-allowToastClose-line"><span class="k">allowToastClose</span>: <spna class="kt toast-allowToastClose">true</spna>, <span class="c">// Boolean value <span class="kt">true</span> or <span class="kt">false</span></span></span>
     <span class="toast-hideAfter-line"><span class="k">hideAfter</span>: <span class="n toast-hideAfter">3000</span>, <span class="c">// <span class="kt">false</span> to make it sticky or number representing the miliseconds as time after which toast needs to be hidden</span></span>
     <span class="toast-stackLength-line"><span class="k">stack</span>: <span class="n toast-stackLength">5</span>, <span class="c">// <span class="kt">false</span> if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time</span></span>
     <span class="toast-position-string-line"><span class="k">position</span>: '<span class="s toast-position">bottom-left</span>', <span class="c">// bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values</span></span>
     <span class="toast-position-string-obj"><span class="k">position</span>: <span class="s toast-position">{ <span class="k">left</span> : <span class="n toast-position-left">20</span>, <span class="k">right</span> : <span class="n toast-position-right">20</span>, <span class="k">top</span> : <span class="n toast-position-top">20</span>, <span class="k">bottom</span> : <span class="n toast-position-bottom">20</span> }</span>, <span class="c">// bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values</span></span>
-    <span class="toast-bgColor-line"><span class="k">bgColor</span>: '<span class="s toast-bgColor">#444</span>', <span class="c"> // Background color of the toast</span></span>
-    <span class="toast-textColor-line"><span class="k">textColor</span>: '<span class="s toast-textColor">#eee</span>', <span class="c"> // Text color of the toast</span></span>
+    <span class="toast-bgColor-line" style="display: none;"><span class="k">bgColor</span>: '<span class="s toast-bgColor">#444</span>', <span class="c"> // Background color of the toast</span></span>
+    <span class="toast-textColor-line" style="display: none;"><span class="k">textColor</span>: '<span class="s toast-textColor">#eee</span>', <span class="c"> // Text color of the toast</span></span>
     <span class="toast-textAlign-line"><span class="k">textAlign</span>: '<span class="s toast-textAlign">left</span>', <span class="c"> // Text alignment i.e. left, right or center</span></span>
     <span class="toast-beforeShow-line"><span class="nb k">beforeShow</span>: <span class="nf toast-beforeShow">function ()</span> {}, <span class="c">// will be triggered before the toast is shown</span></span>
     <span class="toast-afterShown-line"><span class="nb k">afterShown</span>: <span class="nf toast-afterShown">function ()</span> {}, <span class="c">// will be triggered after the toat has been shown</span></span>
@@ -669,6 +683,21 @@ $.toast().reset('all');
                 };
             });
 
+            $('#icon-type').on('change', function () {
+                if ( !$(this).val() ) {
+                    $('.custom-color-info').show();
+                    $('.toast-icon-line').hide();
+                    $('.toast-bgColor-line').show();
+                    $('.toast-textColor-line').show();
+                } else {
+                    $('.toast-icon-line').show();
+                    $('.custom-color-info').hide();
+                    $('.toast-bgColor-line').hide();
+                    $('.toast-textColor-line').hide();
+                    $('.toast-icon-line span.toast-icon').text( $(this).val() );
+                }
+            });
+
             // You are about to see some extremely horrible code that can be MUCH MUCH improved,
             // I've knowlingly done it that way, please don't judge me based upon this ;)
             $(document).ready(function () {
@@ -682,7 +711,8 @@ $.toast().reset('all');
                     var stackToasts = $('#stack-toasts').val(); 
                     var toastPosition = $('#toast-position').val() 
                     var toastBg = $('#toast-bg').val(); 
-                    var toastTextColor = $('#toast-text-color').val() 
+                    var toastTextColor = $('#toast-text-color').val();
+                    var toastIcon = $('#icon-type').val();
                     var textAlign = $('#text-align').val() 
                     var toastEvents = $('#add-toast-events').val() 
 
@@ -763,21 +793,23 @@ $.toast().reset('all');
                         // $('.toast-position-string-obj toast-position').text('');
                     } 
 
-                    if ( toastBg ) {
-                        $('.toast-bgColor-line').show(); 
-                        $('.toast-bgColor-line .toast-bgColor').text( toastBg ); 
-                    } else {
-                        $('.toast-bgColor-line').hide(); 
-                        $('.toast-bgColor-line .toast-bgColor').text(''); 
-                    } 
+                    if ( !toastIcon ) {
+                        if ( toastBg ) {
+                            $('.toast-bgColor-line').show(); 
+                            $('.toast-bgColor-line .toast-bgColor').text( toastBg ); 
+                        } else {
+                            $('.toast-bgColor-line').hide(); 
+                            $('.toast-bgColor-line .toast-bgColor').text(''); 
+                        } 
 
-                    if ( toastTextColor ) {
-                        $('.toast-textColor-line').show(); 
-                        $('.toast-textColor-line .toast-textColor').text( toastTextColor ); 
-                    } else {
-                        $('.toast-textColor-line').hide(); 
-                        $('.toast-textColor-line .toast-textColor').text(''); 
-                    } 
+                        if ( toastTextColor ) {
+                            $('.toast-textColor-line').show(); 
+                            $('.toast-textColor-line .toast-textColor').text( toastTextColor ); 
+                        } else {
+                            $('.toast-textColor-line').hide(); 
+                            $('.toast-textColor-line .toast-textColor').text(''); 
+                        } 
+                    }
 
                     if ( textAlign ) {
                         $('.toast-textAlign-line').show(); 
@@ -852,6 +884,10 @@ $.toast().reset('all');
                         options.position.top =  parseFloat( $('.toast-position .toast-position-top').text() ) || 'auto'; 
                         options.position.bottom =  parseFloat( $('.toast-position .toast-position-bottom').text() ) || 'auto'; 
                     }; 
+
+                    if ( $('.toast-icon-line').is(':visible') ) {
+                        options.icon = $('.toast-icon-line .toast-icon').text();
+                    };
 
                     if ( $('.toast-bgColor-line').is(':visible') ) {
                         options.bgColor = $('#toast-bg').val(); 
