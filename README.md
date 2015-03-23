@@ -2,14 +2,15 @@
 
 A plugin to show highly customizable notifications to the user. 
 
-<img src="http://i.imgur.com/fuwtO7j.png" />
-
-<img src="http://i.imgur.com/NoBWDI8.jpg" />
+<img src="http://i.imgur.com/RRrb0KE.png" />
 
 #How to use
 
 - Include the CSS and JS files
 - Simply do ```$.toast('Toast message to be shown')``` Of course it would be the world's simplest toast message but believe me **you can do a lot more** with the options.
+
+#Demo
+For some quick demos and a detailed documentation accompanied by the demos for each of the available options can be accessed through http://kamranahmed.info/toast
 
 ##Quick usage examples
 **Simple textual toast**
@@ -108,6 +109,7 @@ You can visit <a href="http://kdemos.github.io/jquery-toast-plugin" target="_bla
 
 #Features
 <ul>
+  <li>Show different types of toasts i.e. informational, warning, errors and success</li>
   <li>Custom <strong>toast background color</strong> and <strong>text color</strong></li>
   <li>Ability to <strong>hack the CSS</strong> to add your own thing</li>
   <li>
@@ -131,9 +133,4 @@ You can visit <a href="http://kdemos.github.io/jquery-toast-plugin" target="_bla
 </ul>
 
 Please report any bugs or features you would like added.
-
-
-#Upcoming
-You'll be soon seeing the following features added in the plugin
-- Ability to add the icons through plugin `options` (Currently you can do so by custom CSS styles and passing HTML as the text), to make it a bit hasty
 
