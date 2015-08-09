@@ -1,0 +1,27 @@
+{
+  "name": "jquery-toast-plugin",
+  "version": "0.1.0",
+  "homepage": "http://kamranahmed.info/toast",
+  "authors": [
+    "kamranahmed <kamranahmed.se@gmail.com>"
+  ],
+  "description": "Highly customizable jquery plugin to show toast messages.",
+  "main": [
+    "jquery.toast.min.js",
+    "jquery.toast.min.css"
+  ],
+  "keywords": [
+    "toast"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
