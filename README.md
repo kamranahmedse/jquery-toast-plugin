@@ -96,7 +96,7 @@ window.setTimeout(function(){
   });
 }, 5000);
 ```
-To learn more about how to use and customize it, head to <a href="http://kdemos.github.io/jquery-toast-plugin" target="_blank">http://kdemos.github.io/jquery-toast-plugin</a>. Also you can find a customizer there that will let you modify the look and feel of the toast however you like it.
+To learn more about how to use and customize it, head to <a href="http://kamranahmed.info/toast" target="_blank">http://kamranahmed.info/toast</a>. Also you can find a customizer there that will let you modify the look and feel of the toast however you like it.
 
 <hr>
 
