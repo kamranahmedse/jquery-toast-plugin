@@ -2,7 +2,7 @@
  * jQuery toast plugin created by Kamran Ahmed copyright MIT license 2014
  * v0.1
  */
-.jq-toast-wrap { display: block; position: fixed; width: 250px;  pointer-events: none !important; margin: 0; padding: 0; letter-spacing: normal; z-index: 9000; }
+.jq-toast-wrap { display: block; position: fixed; width: 250px;  pointer-events: none !important; margin: 0; padding: 0; letter-spacing: normal; z-index: 9000 !important; }
 .jq-toast-wrap * { margin: 0; padding: 0; }
 
 .jq-toast-wrap.bottom-left { bottom: 20px; left: 20px; }
