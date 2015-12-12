@@ -6,7 +6,14 @@ A plugin to show highly customizable notifications to the user.
 
 #How to use
 
-- Include the CSS and JS files
+- You can install the plugin via Bower:
+
+    ```js
+    bower install kamranahmedse/jquery-toast-plugin
+    ```
+    
+    Or directly download the repository and place the content of `dist` wherever you can access them.
+- Include the CSS and JS files.
 - Simply do ```$.toast('Toast message to be shown')``` Of course it would be the world's simplest toast message but believe me **you can do a lot more** with the options.
 
 #Demo
