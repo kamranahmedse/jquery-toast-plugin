@@ -1,27 +1,34 @@
 {
   "name": "jquery-toast-plugin",
-  "version": "0.1.0",
-  "homepage": "http://kamranahmed.info/toast",
-  "authors": [
-    "kamranahmed <kamranahmed.se@gmail.com>"
-  ],
-  "description": "Highly customizable jquery plugin to show toast messages.",
+  "description": "A highly customizable jquery toast plugin",
   "main": [
-    "jquery.toast.min.js",
-    "jquery.toast.min.css"
+    "./dist/jquery.toast.min.js",
+    "./dist/jquery.toast.min.css"
   ],
+  "moduleType": [],
   "keywords": [
-    "toast"
+    "jquery",
+    "toast-plugin",
+    "jquery-toasts",
+    "toast",
+    "notification",
+    "messages",
+    "jquery-notification"
+  ],
+  "authors": [
+    "Kamran Ahmed"
   ],
   "license": "MIT",
+  "homepage": "http://kamranahmed.info/toast",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "README.md"
   ],
   "dependencies": {
-    "jquery": "~2.1.4"
+    "jquery": ">=1.9.0"
   }
 }
