@@ -112,7 +112,7 @@ You can simply download the repo or if you are in rush the <a href="https://raw.
 <hr>
 
 #Demo
-You can visit <a href="http://kdemos.github.io/jquery-toast-plugin" target="_blank">http://kdemos.github.io/jquery-toast-plugin</a> to view a number of demos, you can see how to use and also you can customize the plugin to match your needs.
+You can visit <a href="http://kamranahmed.info/toast" target="_blank">http://kdemos.github.io/jquery-toast-plugin</a> to view a number of demos, you can see how to use and also you can customize the plugin to match your needs.
 
 #Features
 <ul>
