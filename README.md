@@ -109,11 +109,6 @@ To learn more about how to use and customize it, head to <a href="http://kamrana
 
 You can simply download the repo or if you are in rush the <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.min.css" target="_blank">minified CSS</a> or <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.css">non-minified CSS</a> can be found and <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.min.js" target="_blank">minified JS</a> and <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.js" target="_blank">non minified JS</a> can also be found.
 
-<hr>
-
-#Demo
-You can visit <a href="http://kamranahmed.info/toast" target="_blank">http://kdemos.github.io/jquery-toast-plugin</a> to view a number of demos, you can see how to use and also you can customize the plugin to match your needs.
-
 #Features
 <ul>
   <li>Show different types of toasts i.e. informational, warning, errors and success</li>
