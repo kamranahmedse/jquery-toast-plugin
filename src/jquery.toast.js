@@ -1,6 +1,6 @@
 ;
 // jQuery toast plugin created by Kamran Ahmed copyright MIT license 2015
-// v0.2
+// v0.3
 if ( typeof Object.create !== 'function' ) {
     Object.create = function( obj ) {
         function F() {}
@@ -226,8 +226,9 @@ if ( typeof Object.create !== 'function' ) {
         },
 
         processLoader: function () {
-            if (!this.canAutoHide()) {
-                return false;   
+            // Show the loader only, if auto-hide is on and loader is demanded
+            if (!this.canAutoHide() && this.options.loader === false) {
+                return false;
             }
 
             var loader = this._toastEl.find('.jq-toast-loader');
@@ -335,6 +336,7 @@ if ( typeof Object.create !== 'function' ) {
         showHideTransition: 'fade',
         allowToastClose: true,
         hideAfter: 3000,
+        loader: true,
         stack: 5,
         position: 'bottom-left',
         bgColor: false,
