@@ -125,7 +125,7 @@ You can simply download the repo or if you are in rush the <a href="https://raw.
   <li><strong>Events support</strong> i.e. <code>beforeHide</code>, <code>afterHidden</code>, <code>beforeShow</code>, <code>afterShown</code></li>
 
   <li><code>Fade</code> and <code>Slide</code> show/hide transitions support (More to come)</li>
-
+  <li>Supports showing the loader for the toast</li>
   <li>You can <strong>position the toast, wherever you want</strong> there is support for <code>top-left</code>, <code>top-right</code> <code>bottom-left</code> and <strong>bottom-right</strong>, <code>top-center</code>, <code>bottom-center</code> and <code>mid-center</code> ...sighs! That's a whole lot of options, isn't it? No, you say. Ok then here is the most exciting thing, you can also introduce <strong>your own positioning</strong> just <strong>by passing a simple js object</strong> containing <code>{ top: - , bottom: -, left: -, right: - }</code> </li>
 
   <li>Ability to add <strong>sticky toast</strong></li>
