@@ -236,13 +236,15 @@ if ( typeof Object.create !== 'function' ) {
             // 400 is the default time that jquery uses for fade/slide
             // Divide by 1000 for milliseconds to seconds conversion
             var transitionTime = (this.options.hideAfter - 400) / 1000 + 's';
+            var loaderBg = this.options.loaderBg;
 
             var style = loader.attr('style') || '';
             style = style.substring(0, style.indexOf('-webkit-transition')); // Remove the last transition definition
 
             style += '-webkit-transition: width ' + transitionTime + ' ease-in; \
                       -o-transition: width ' + transitionTime + ' ease-in; \
-                      transition: width ' + transitionTime + ' ease-in;'
+                      transition: width ' + transitionTime + ' ease-in; \
+                      background-color: ' + loaderBg + ';';
 
 
             loader.attr('style', style).addClass('jq-toast-loaded');
@@ -337,6 +339,7 @@ if ( typeof Object.create !== 'function' ) {
         allowToastClose: true,
         hideAfter: 3000,
         loader: true,
+        loaderBg: 'red',
         stack: 5,
         position: 'bottom-left',
         bgColor: false,
