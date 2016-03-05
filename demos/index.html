@@ -667,6 +667,18 @@ $.toast().reset('all');
               <option value="false">False</option>
             </select>
           </p>
+
+          <p class="">
+            <label for="show-loader">Show Loader</label>
+            <select name="show-loader" id="show-loader" class="show-loader">
+              <option value="true">True</option>
+              <option value="false">False</option>
+            </select>
+          </p>
+          <p>
+            <label for="loader-bg">Loader Color</label>
+            <input type="color" id="loader-bg" class="loader-bg" value="#9EC600">
+          </p>
           
 
           <div class="code-runner">
@@ -685,6 +697,8 @@ $.toast().reset('all');
     <span class="toast-bgColor-line" style="display: none;"><span class="k">bgColor</span>: '<span class="s toast-bgColor">#444</span>', <span class="c"> // Background color of the toast</span></span>
     <span class="toast-textColor-line" style="display: none;"><span class="k">textColor</span>: '<span class="s toast-textColor">#eee</span>', <span class="c"> // Text color of the toast</span></span>
     <span class="toast-textAlign-line"><span class="k">textAlign</span>: '<span class="s toast-textAlign">left</span>', <span class="c"> // Text alignment i.e. left, right or center</span></span>
+    <span class="toast-loader-line"><span class="k">loader</span>: <span class="s toast-textLoader">true</span>, <span class="c"> // Whether to show loader or not. True by default</span></span>
+    <span class="toast-loaderBg-line"><span class="k">loaderBg</span>: '<span class="s toast-textLoaderBg">#9EC600</span>', <span class="c"> // Background color of the toast loader</span></span>
     <span class="toast-beforeShow-line"><span class="nb k">beforeShow</span>: <span class="nf toast-beforeShow">function ()</span> {}, <span class="c">// will be triggered before the toast is shown</span></span>
     <span class="toast-afterShown-line"><span class="nb k">afterShown</span>: <span class="nf toast-afterShown">function ()</span> {}, <span class="c">// will be triggered after the toat has been shown</span></span>
     <span class="toast-beforeHide-line"><span class="nb k">beforeHide</span>: <span class="nf toast-beforeHide">function ()</span> {}, <span class="c">// will be triggered before the toast gets hidden</span></span>
@@ -742,8 +756,10 @@ $.toast().reset('all');
                     var toastBg = $('#toast-bg').val(); 
                     var toastTextColor = $('#toast-text-color').val();
                     var toastIcon = $('#icon-type').val();
-                    var textAlign = $('#text-align').val() 
-                    var toastEvents = $('#add-toast-events').val() 
+                    var textAlign = $('#text-align').val();
+                    var toastEvents = $('#add-toast-events').val();
+                    var loader = $('#show-loader').val();
+                    var loaderBg = $('#loader-bg').val();
 
                     if ( text ) {
                         $('.toast-text-line').show(); 
@@ -848,6 +864,16 @@ $.toast().reset('all');
                         $('.toast-textAlign-line .toast-textAlign').text( ''); 
                     } 
 
+                    if (loader == 'false') {
+                        $('.toast-textLoader').html('false');
+                    } else {
+                        $('.toast-textLoader').html('true');
+                    }
+                    
+                    if (loaderBg) {
+                        $('.toast-textLoaderBg').html(loaderBg);
+                    }
+
                     if ( toastEvents == 'false' ) {
                         $('.toast-beforeShow-line').hide(); 
                         $('.toast-afterShown-line').hide(); 
@@ -929,6 +955,9 @@ $.toast().reset('all');
                     if ( $("#text-align").is(':visible') ) {
                         options.textAlign = $('#text-align').val(); 
                     };
+
+                    options.loader = $('.toast-textLoader').html() === 'false' ? false : true;
+                    options.loaderBg = $('.toast-textLoaderBg').html();
 
                     $.toast( options ); 
                 }
