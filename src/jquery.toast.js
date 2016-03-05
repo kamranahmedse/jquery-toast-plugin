@@ -8,6 +8,7 @@ if ( typeof Object.create !== 'function' ) {
         return new F();
     };
 }
+
 (function( $, window, document, undefined ) {
 
     "use strict";
@@ -47,6 +48,9 @@ if ( typeof Object.create !== 'function' ) {
             this._toastEl = this._toastEl || $('<div></div>', {
                 class : 'jq-toast-single'
             });
+
+            // For the loader on top
+            _toastContent += '<span class="jq-toast-loader"></span>';            
 
             if ( this.options.allowToastClose ) {
                 _toastContent += '<span class="close-jq-toast-single">&times;</span>';
@@ -132,6 +136,10 @@ if ( typeof Object.create !== 'function' ) {
 
             var that = this;
 
+            this._toastEl.on('afterShown', function () {
+                that.processLoader();
+            });
+
             this._toastEl.find('.close-jq-toast-single').on('click', function ( e ) {
 
                 e.preventDefault();
@@ -213,6 +221,32 @@ if ( typeof Object.create !== 'function' ) {
             this._container = _container;
         },
 
+        canAutoHide: function () {
+            return ( this.options.hideAfter !== false ) && !isNaN( parseInt( this.options.hideAfter, 10 ) );
+        },
+
+        processLoader: function () {
+            if (!this.canAutoHide()) {
+                return false;   
+            }
+
+            var loader = this._toastEl.find('.jq-toast-loader');
+
+            // 400 is the default time that jquery uses for fade/slide
+            // Divide by 1000 for milliseconds to seconds conversion
+            var transitionTime = (this.options.hideAfter - 400) / 1000 + 's';
+
+            var style = loader.attr('style') || '';
+            style = style.substring(0, style.indexOf('-webkit-transition')); // Remove the last transition definition
+
+            style += '-webkit-transition: width ' + transitionTime + ' ease-in; \
+                      -o-transition: width ' + transitionTime + ' ease-in; \
+                      transition: width ' + transitionTime + ' ease-in;'
+
+
+            loader.attr('style', style).addClass('jq-toast-loaded');
+        },
+
         animate: function () {
 
             var that = this;
@@ -235,7 +269,7 @@ if ( typeof Object.create !== 'function' ) {
                 });
             }
 
-            if ( ( this.options.hideAfter !== false ) && !isNaN( parseInt( this.options.hideAfter, 10 ) ) ) {
+            if (this.canAutoHide()) {
 
                 var that = this;
 
@@ -300,7 +334,7 @@ if ( typeof Object.create !== 'function' ) {
         heading: '',
         showHideTransition: 'fade',
         allowToastClose: true,
-        hideAfter: 5000,
+        hideAfter: 3000,
         stack: 5,
         position: 'bottom-left',
         bgColor: false,
