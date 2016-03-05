@@ -27,6 +27,7 @@
         span.toast-position span.k { display: inline; } 
         .toast-index .muted { display: block; color: #AD9D9D; }
         .toast-index .muted:hover { color: #333; }
+        .latest-update { padding: 0px 30px; border: 1px dashed; margin: 30px 0; box-sizing: border-box; }
     </style>
 </head>
 <body>
@@ -58,6 +59,30 @@
                 </ul>
             </li>
         </ul>
+        
+        <div class="latest-update">
+            <h1 id="latest-update">Latest Update</h1>
+            <p>Toast loader has been introduced in the latest version. Check the demo below to see it in action</p>
+            <div class="code-runner" style="margin-left: 0px; margin-right: 0px;">
+                <a class="eval-js" href="#">Run code</a>
+                <pre><code>$.toast('Here you can put the text of the toast')</code></pre>
+            </div>
+
+            <p>Loader is enabled by default. In order to disable it or change the color, use the `loader` and `loaderBg` options. Have a look at the demo below</p>
+
+            <div class="code-runner" style="margin-left: 0px; margin-right: 0px;">
+                <a class="eval-js" href="#">Run code</a>
+                <pre><code>$.toast({
+    heading: 'Information',
+    text: 'Loaders are enabled by default. Use `loader`, `loaderBg` to change the default behavior',
+    icon: 'info',
+    loader: true,        // Change it to false to disable loader
+    loaderBg: '#9EC600'  // To change the background
+})</code></pre>
+            </div>
+        </div>
+        
+
 
         <h1 id="quick-demos">Quick Demos</h1>
 
