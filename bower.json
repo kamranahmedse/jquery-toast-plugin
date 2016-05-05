@@ -1,7 +1,7 @@
 {
   "name": "jquery-toast-plugin",
   "description": "A highly customizable jquery toast plugin",
-  "version": "1.3",
+  "version": "1.3.0",
   "main": [
     "./dist/jquery.toast.min.js",
     "./dist/jquery.toast.min.css"

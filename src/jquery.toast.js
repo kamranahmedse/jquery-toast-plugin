@@ -1,6 +1,6 @@
 ;
 // jQuery toast plugin created by Kamran Ahmed copyright MIT license 2015
-// v1.3
+// v1.3.0
 if ( typeof Object.create !== 'function' ) {
     Object.create = function( obj ) {
         function F() {}
