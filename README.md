@@ -9,7 +9,13 @@ A plugin to show highly customizable notifications to the user.
 - You can install the plugin via Bower:
 
     ```js
-    bower install kamranahmedse/jquery-toast-plugin
+    bower install jquery-toast-plugin
+    ```
+    
+    or via `npm`
+    
+    ```js
+    npm install jquery-toast-plugin
     ```
     
     Or directly download the repository and place the content of `dist` wherever you can access them.
