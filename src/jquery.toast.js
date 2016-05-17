@@ -114,6 +114,13 @@ if ( typeof Object.create !== 'function' ) {
                     if (!hasDefinedStyle)
                     	this._toastEl.addClass('jq-toast-style-' + this.options.icon);
                 }
+                else if (this.options.icon == 'spinner') {
+                	this._toastEl.prepend('<div class="jq-icon-spinner"></div>');
+                    // default to "info" style for spinner
+                    if (!hasDefinedStyle)
+                    	this._toastEl.addClass('jq-toast-style-info');
+                }
+                	
             }
         },
 
@@ -148,6 +155,16 @@ if ( typeof Object.create !== 'function' ) {
                 });
             } else {
                 this._container.addClass( 'bottom-left' );
+            }
+
+            // FIXME: hack! to middle-align the spinner icon which is an absolutely positioned element (must be done after adding to DOM)
+            if (this.options.icon && this.options.icon === 'spinner' && this.options.iconAlign === 'middle') {
+            	var $spinner = this._toastEl.find('div.jq-icon-spinner');
+            	if ($spinner.length) {
+            		this._toastEl.show();
+            		$spinner.css('top', (this._toastEl.innerHeight() / 2 - $spinner.outerHeight() / 2) + "px");
+            		this._toastEl.hide();
+            	}
             }
         },
 
@@ -335,6 +352,7 @@ if ( typeof Object.create !== 'function' ) {
             this.prepareOptions(options, this.options);
             this.setup();
             this.bindToast();
+            this.position();
             this.setupAutoHide();
 //          this.processLoader();  // could do this insted of the trigger below
             this._toastEl.trigger('afterShown');
@@ -370,7 +388,7 @@ if ( typeof Object.create !== 'function' ) {
         bgColor: false,
         textColor: false,
         textAlign: 'left',			// 'left', 'right', 'center'
-        icon: false,				// 'info', 'success', 'warning', 'error'
+        icon: false,				// 'info', 'success', 'warning', 'error', 'spinner'
         iconAlign: 'middle',		// 'middle', 'top'
         style: false,				// false to use icon style (if any), or one of the icon types ('info', etc), or 'default' to force default look
         beforeShow: function () {},

@@ -58,6 +58,7 @@
                     <li><a href="#toasts-events">Toast Events</a></li>
                     <li><a href="#updating-toasts">Updating Toasts</a></li>
                     <li><a href="#resetting-toasts">Resetting Toasts</a></li>
+                    <li><a href="#toast-defaults">Setting Toast Defaults</a></li>
                 </ul>
             </li>
         </ul>
@@ -396,6 +397,7 @@
             <li><span class="code">warning</span> generates a toast with warning icon</li>
             <li><span class="code">error</span> generates a toast with error icon</li>
             <li><span class="code">success</span> generates a toast with success icon</li>
+            <li><span class="code">spinner</span> generates a toast with an animated "busy" icon</li>
         </ul>
         
         <div class="code-runner">
@@ -433,7 +435,16 @@
     icon: 'info'
 })</code></pre>
         </div>
-                        
+            
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Spinner',
+    text: 'This icon indicates something is in progress. The message box has an "info" style by default.',
+    icon: 'spinner'
+})</code></pre>
+        </div>
+            
         <h2 id="toasts-styles"><span class="muted">9.</span> Pre-defined Message Styles</h2>
         <p><span class="code">style</span> property can be used to specify the predefined types of toasts. Following are the predefined types:</p>
         <ul>
@@ -481,7 +492,20 @@
     style: 'default'
 })</code></pre>
         </div>
-   
+            
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Warning Spinner',
+    text: 'This icon indicates something is in progress, with a forced warning style.',
+    icon: 'spinner',
+    style: 'warning',
+    hideAfter: false,
+    iconAlign: top
+})</code></pre>
+        </div>
+
+		  
         <h2 id="toasts-bg-color"><span class="muted">10.</span> Background &amp; text color</h2>
         <p><span class="code">bgColor</span> property is used to specify the background color of the toast message. Default is '#444'</p>
         <p><span class="code">textColor</span> property is used to specify the text color of the toast message. Default is '#eee'</p>
@@ -568,19 +592,19 @@
         <a href="#" class="eval-js">Run Code</a>
 <pre><code>
 var myToast = $.toast({
-    heading: 'Information',
-    text: 'Here is some information that will be later on turned to an error',
-    icon: 'info',
+    heading: 'Please Wait...',
+    text: 'Here is some information that will later be replaced.',
+    icon: 'spinner',
     hideAfter: false
 });
 
 // Update the toast after three seconds.
 window.setTimeout(function(){
     myToast.update({
-        heading: 'Error',
-        text: 'Here is an information that changed to error',
-        icon: 'error',
-        hideAfter: false
+        heading: 'Success',
+        text: 'Here is the information that changed. It also has a timeout.',
+        icon: 'success',
+        hideAfter: 6000
     });    
 }, 3000)
 
@@ -605,6 +629,23 @@ $.toast().reset('all');
         </div>
 
         
+        <h2 id="toast-defaults"><span class="muted">16.</span> Setting Toast Defaults</h2>
+        <p>You can override Toast default options centrally, anywhere before calling $.toast(). For example:</p>
+
+        <div class="code-runner">
+<pre><code>
+var myToastDefaults = {
+	showHideTransition: "slide",
+	position: "top-left",
+	iconAlign: "top",
+	loaderBg: "#3380ff",
+};
+
+$.extend($.toast.options, myToastDefaults);
+</code></pre>
+        </div>
+
+
 
     <div class="plugin-options">
           <h1 id="toast-generator">Customize Plugin</h1>
@@ -703,6 +744,7 @@ $.toast().reset('all');
               <option value="success">Success</option>
               <option value="error">Error</option>
               <option value="info">Information</option>
+              <option value="spinner">Spinner</option>
             </select>
           </p>
 
