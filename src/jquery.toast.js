@@ -48,18 +48,15 @@ if ( typeof Object.create !== 'function' ) {
                 class : 'jq-toast-single'
             });
 
-            // For the loader on top
-            _toastContent += '<span class="jq-toast-loader"></span>';            
-
             if ( this.options.allowToastClose ) {
                 _toastContent += '<span class="close-jq-toast-single">&times;</span>';
             };
 
+            if ( this.options.heading ) {
+                _toastContent +='<h2 class="jq-toast-heading">' + this.options.heading + '</h2>';
+            };
+            
             if ( this.options.text instanceof Array ) {
-
-                if ( this.options.heading ) {
-                    _toastContent +='<h2 class="jq-toast-heading">' + this.options.heading + '</h2>';
-                };
 
                 _toastContent += '<ul class="jq-toast-ul">';
                 for (var i = 0; i < this.options.text.length; i++) {
@@ -68,9 +65,6 @@ if ( typeof Object.create !== 'function' ) {
                 _toastContent += '</ul>';
 
             } else {
-                if ( this.options.heading ) {
-                    _toastContent +='<h2 class="jq-toast-heading">' + this.options.heading + '</h2>';
-                };
                 _toastContent += this.options.text;
             }
 
@@ -224,29 +218,56 @@ if ( typeof Object.create !== 'function' ) {
             return ( this.options.hideAfter !== false ) && !isNaN( parseInt( this.options.hideAfter, 10 ) );
         },
 
+        setupAutoHide : function() {
+            if (!this.canAutoHide())
+                return;
+
+            var that = this;
+
+            window.setTimeout(function(){
+                
+                if ( that.options.showHideTransition.toLowerCase() === 'fade' ) {
+                    that._toastEl.trigger('beforeHide');
+                    that._toastEl.fadeOut(function () {
+                        that._toastEl.trigger('afterHidden');
+                    });
+                } else if ( that.options.showHideTransition.toLowerCase() === 'slide' ) {
+                    that._toastEl.trigger('beforeHide');
+                    that._toastEl.slideUp(function () {
+                        that._toastEl.trigger('afterHidden');
+                    });
+                } else {
+                    that._toastEl.trigger('beforeHide');
+                    that._toastEl.hide(function () {
+                        that._toastEl.trigger('afterHidden');
+                    });
+                }
+
+            }, this.options.hideAfter);
+        },
+        
         processLoader: function () {
-            // Show the loader only, if auto-hide is on and loader is demanded
+            // Show the loader only if auto-hide is on and loader is demanded
             if (!this.canAutoHide() || this.options.loader === false) {
-                return false;
+                return;
             }
 
-            var loader = this._toastEl.find('.jq-toast-loader');
-
-            // 400 is the default time that jquery uses for fade/slide
-            // Divide by 1000 for milliseconds to seconds conversion
-            var transitionTime = (this.options.hideAfter - 400) / 1000 + 's';
-            var loaderBg = this.options.loaderBg;
-
-            var style = loader.attr('style') || '';
-            style = style.substring(0, style.indexOf('-webkit-transition')); // Remove the last transition definition
-
-            style += '-webkit-transition: width ' + transitionTime + ' ease-in; \
+            // remove existing loader, if any (required to re-trigger animation on existing element)
+            this._toastEl.find('.jq-toast-loader').remove();
+            // define loader element
+            var loader = $('<span class="jq-toast-loader"></span>');
+            
+            // 400 is the default time that jquery uses for fade/slide - 100ms for start delay
+            var transitionTime = (this.options.hideAfter - 500) + 'ms';
+            var style = '-webkit-transition: width ' + transitionTime + ' ease-in; \
                       -o-transition: width ' + transitionTime + ' ease-in; \
                       transition: width ' + transitionTime + ' ease-in; \
-                      background-color: ' + loaderBg + ';';
+                      background-color: ' + this.options.loaderBg + ';';
 
-
-            loader.attr('style', style).addClass('jq-toast-loaded');
+            loader.attr('style', style);
+            this._toastEl.prepend(loader);
+            // w/out this delay the transition doesn't fire upon toast.update()
+            window.setTimeout(function() { loader.addClass('jq-toast-loaded'); }, 100);
         },
 
         animate: function () {
@@ -271,31 +292,7 @@ if ( typeof Object.create !== 'function' ) {
                 });
             }
 
-            if (this.canAutoHide()) {
-
-                var that = this;
-
-                window.setTimeout(function(){
-                    
-                    if ( that.options.showHideTransition.toLowerCase() === 'fade' ) {
-                        that._toastEl.trigger('beforeHide');
-                        that._toastEl.fadeOut(function () {
-                            that._toastEl.trigger('afterHidden');
-                        });
-                    } else if ( that.options.showHideTransition.toLowerCase() === 'slide' ) {
-                        that._toastEl.trigger('beforeHide');
-                        that._toastEl.slideUp(function () {
-                            that._toastEl.trigger('afterHidden');
-                        });
-                    } else {
-                        that._toastEl.trigger('beforeHide');
-                        that._toastEl.hide(function () {
-                            that._toastEl.trigger('afterHidden');
-                        });
-                    }
-
-                }, this.options.hideAfter);
-            };
+            this.setupAutoHide();
         },
 
         reset: function ( resetWhat ) {
@@ -312,6 +309,9 @@ if ( typeof Object.create !== 'function' ) {
             this.prepareOptions(options, this.options);
             this.setup();
             this.bindToast();
+            this.setupAutoHide();
+//          this.processLoader();  // could do this insted of the trigger below
+            this._toastEl.trigger('afterShown');
         }
     };
     
