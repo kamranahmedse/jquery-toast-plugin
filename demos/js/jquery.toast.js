@@ -42,24 +42,22 @@ if ( typeof Object.create !== 'function' ) {
 
         setup: function () {
             
-            var _toastContent = '';
+            var _toastContent = '',
+            	hasDefinedStyle = false;
             
             this._toastEl = this._toastEl || $('<div></div>', {
                 class : 'jq-toast-single'
             });
 
-            // For the loader on top
-            _toastContent += '<span class="jq-toast-loader"></span>';            
-
             if ( this.options.allowToastClose ) {
                 _toastContent += '<span class="close-jq-toast-single">&times;</span>';
             };
 
+            if ( this.options.heading ) {
+                _toastContent +='<h2 class="jq-toast-heading">' + this.options.heading + '</h2>';
+            };
+            
             if ( this.options.text instanceof Array ) {
-
-                if ( this.options.heading ) {
-                    _toastContent +='<h2 class="jq-toast-heading">' + this.options.heading + '</h2>';
-                };
 
                 _toastContent += '<ul class="jq-toast-ul">';
                 for (var i = 0; i < this.options.text.length; i++) {
@@ -68,9 +66,6 @@ if ( typeof Object.create !== 'function' ) {
                 _toastContent += '</ul>';
 
             } else {
-                if ( this.options.heading ) {
-                    _toastContent +='<h2 class="jq-toast-heading">' + this.options.heading + '</h2>';
-                };
                 _toastContent += this.options.text;
             }
 
@@ -88,13 +83,38 @@ if ( typeof Object.create !== 'function' ) {
                 this._toastEl.css('text-align', this.options.textAlign);
             }
 
-            if ( this.options.icon !== false ) {
-                this._toastEl.addClass('jq-has-icon');
+        	// remove any current icons & styles
+        	for (var i=0; i < this._defaultIcons.length; ++i) {
+        		this._toastEl.removeClass('jq-icon-' + this._defaultIcons[i]);
+        		this._toastEl.removeClass('jq-toast-style-' + this._defaultIcons[i]);
+        	}
+        	this._toastEl.removeClass('jq-toast-icon-top');
+        	this._toastEl.removeClass('jq-has-icon');
 
+            // style from option, overrides icon style
+        	if (this.options.style) {
+	            if ( $.inArray(this.options.style, this._defaultIcons) !== -1 ) {
+	            	hasDefinedStyle = true;
+	                this._toastEl.addClass('jq-toast-style-' + this.options.style);
+	            }
+	            // don't define any style if "default"
+	            else if (this.options.style === 'default')
+	            	hasDefinedStyle = true;
+        	}
+        	
+            // icon
+            if ( this.options.icon !== false ) {
+            	this._toastEl.addClass('jq-has-icon');
+            	
                 if ( $.inArray(this.options.icon, this._defaultIcons) !== -1 ) {
                     this._toastEl.addClass('jq-icon-' + this.options.icon);
-                };
-            };
+                    if (this.options.iconAlign === 'top')
+                    	this._toastEl.addClass('jq-toast-icon-top');
+                    // set style from icon if not already defined
+                    if (!hasDefinedStyle)
+                    	this._toastEl.addClass('jq-toast-style-' + this.options.icon);
+                }
+            }
         },
 
         position: function () {
@@ -224,29 +244,56 @@ if ( typeof Object.create !== 'function' ) {
             return ( this.options.hideAfter !== false ) && !isNaN( parseInt( this.options.hideAfter, 10 ) );
         },
 
+        setupAutoHide : function() {
+            if (!this.canAutoHide())
+                return;
+
+            var that = this;
+
+            window.setTimeout(function(){
+                
+                if ( that.options.showHideTransition.toLowerCase() === 'fade' ) {
+                    that._toastEl.trigger('beforeHide');
+                    that._toastEl.fadeOut(function () {
+                        that._toastEl.trigger('afterHidden');
+                    });
+                } else if ( that.options.showHideTransition.toLowerCase() === 'slide' ) {
+                    that._toastEl.trigger('beforeHide');
+                    that._toastEl.slideUp(function () {
+                        that._toastEl.trigger('afterHidden');
+                    });
+                } else {
+                    that._toastEl.trigger('beforeHide');
+                    that._toastEl.hide(function () {
+                        that._toastEl.trigger('afterHidden');
+                    });
+                }
+
+            }, this.options.hideAfter);
+        },
+        
         processLoader: function () {
-            // Show the loader only, if auto-hide is on and loader is demanded
+            // Show the loader only if auto-hide is on and loader is demanded
             if (!this.canAutoHide() || this.options.loader === false) {
-                return false;
+                return;
             }
 
-            var loader = this._toastEl.find('.jq-toast-loader');
-
-            // 400 is the default time that jquery uses for fade/slide
-            // Divide by 1000 for milliseconds to seconds conversion
-            var transitionTime = (this.options.hideAfter - 400) / 1000 + 's';
-            var loaderBg = this.options.loaderBg;
-
-            var style = loader.attr('style') || '';
-            style = style.substring(0, style.indexOf('-webkit-transition')); // Remove the last transition definition
-
-            style += '-webkit-transition: width ' + transitionTime + ' ease-in; \
+            // remove existing loader, if any (required to re-trigger animation on existing element)
+            this._toastEl.find('.jq-toast-loader').remove();
+            // define loader element
+            var loader = $('<span class="jq-toast-loader"></span>');
+            
+            // 400 is the default time that jquery uses for fade/slide - 100ms for start delay
+            var transitionTime = (this.options.hideAfter - 500) + 'ms';
+            var style = '-webkit-transition: width ' + transitionTime + ' ease-in; \
                       -o-transition: width ' + transitionTime + ' ease-in; \
                       transition: width ' + transitionTime + ' ease-in; \
-                      background-color: ' + loaderBg + ';';
+                      background-color: ' + this.options.loaderBg + ';';
 
-
-            loader.attr('style', style).addClass('jq-toast-loaded');
+            loader.attr('style', style);
+            this._toastEl.prepend(loader);
+            // w/out this delay the transition doesn't fire upon toast.update()
+            window.setTimeout(function() { loader.addClass('jq-toast-loaded'); }, 100);
         },
 
         animate: function () {
@@ -271,31 +318,7 @@ if ( typeof Object.create !== 'function' ) {
                 });
             }
 
-            if (this.canAutoHide()) {
-
-                var that = this;
-
-                window.setTimeout(function(){
-                    
-                    if ( that.options.showHideTransition.toLowerCase() === 'fade' ) {
-                        that._toastEl.trigger('beforeHide');
-                        that._toastEl.fadeOut(function () {
-                            that._toastEl.trigger('afterHidden');
-                        });
-                    } else if ( that.options.showHideTransition.toLowerCase() === 'slide' ) {
-                        that._toastEl.trigger('beforeHide');
-                        that._toastEl.slideUp(function () {
-                            that._toastEl.trigger('afterHidden');
-                        });
-                    } else {
-                        that._toastEl.trigger('beforeHide');
-                        that._toastEl.hide(function () {
-                            that._toastEl.trigger('afterHidden');
-                        });
-                    }
-
-                }, this.options.hideAfter);
-            };
+            this.setupAutoHide();
         },
 
         reset: function ( resetWhat ) {
@@ -312,6 +335,9 @@ if ( typeof Object.create !== 'function' ) {
             this.prepareOptions(options, this.options);
             this.setup();
             this.bindToast();
+            this.setupAutoHide();
+//          this.processLoader();  // could do this insted of the trigger below
+            this._toastEl.trigger('afterShown');
         }
     };
     
@@ -334,17 +360,19 @@ if ( typeof Object.create !== 'function' ) {
     $.toast.options = {
         text: '',
         heading: '',
-        showHideTransition: 'fade',
+        showHideTransition: 'fade',	// 'fade', 'slide', or 'plain'
         allowToastClose: true,
-        hideAfter: 3000,
-        loader: true,
+        hideAfter: 3000,			// [ms]
+        loader: true,				// the hideAfter time progress bar
         loaderBg: '#9EC600',
         stack: 5,
-        position: 'bottom-left',
+        position: 'bottom-left',	// 'bottom-left', 'bottom-right', 'top-right', 'top-left', 'bottom-center', 'top-center', 'mid-center'
         bgColor: false,
         textColor: false,
-        textAlign: 'left',
-        icon: false,
+        textAlign: 'left',			// 'left', 'right', 'center'
+        icon: false,				// 'info', 'success', 'warning', 'error'
+        iconAlign: 'middle',		// 'middle', 'top'
+        style: false,				// false to use icon style (if any), or one of the icon types ('info', etc), or 'default' to force default look
         beforeShow: function () {},
         afterShown: function () {},
         beforeHide: function () {},

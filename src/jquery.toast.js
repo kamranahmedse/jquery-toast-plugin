@@ -42,7 +42,8 @@ if ( typeof Object.create !== 'function' ) {
 
         setup: function () {
             
-            var _toastContent = '';
+            var _toastContent = '',
+            	hasDefinedStyle = false;
             
             this._toastEl = this._toastEl || $('<div></div>', {
                 class : 'jq-toast-single'
@@ -82,13 +83,38 @@ if ( typeof Object.create !== 'function' ) {
                 this._toastEl.css('text-align', this.options.textAlign);
             }
 
-            if ( this.options.icon !== false ) {
-                this._toastEl.addClass('jq-has-icon');
+        	// remove any current icons & styles
+        	for (var i=0; i < this._defaultIcons.length; ++i) {
+        		this._toastEl.removeClass('jq-icon-' + this._defaultIcons[i]);
+        		this._toastEl.removeClass('jq-toast-style-' + this._defaultIcons[i]);
+        	}
+        	this._toastEl.removeClass('jq-toast-icon-top');
+        	this._toastEl.removeClass('jq-has-icon');
 
+            // style from option, overrides icon style
+        	if (this.options.style) {
+	            if ( $.inArray(this.options.style, this._defaultIcons) !== -1 ) {
+	            	hasDefinedStyle = true;
+	                this._toastEl.addClass('jq-toast-style-' + this.options.style);
+	            }
+	            // don't define any style if "default"
+	            else if (this.options.style === 'default')
+	            	hasDefinedStyle = true;
+        	}
+        	
+            // icon
+            if ( this.options.icon !== false ) {
+            	this._toastEl.addClass('jq-has-icon');
+            	
                 if ( $.inArray(this.options.icon, this._defaultIcons) !== -1 ) {
                     this._toastEl.addClass('jq-icon-' + this.options.icon);
-                };
-            };
+                    if (this.options.iconAlign === 'top')
+                    	this._toastEl.addClass('jq-toast-icon-top');
+                    // set style from icon if not already defined
+                    if (!hasDefinedStyle)
+                    	this._toastEl.addClass('jq-toast-style-' + this.options.icon);
+                }
+            }
         },
 
         position: function () {
@@ -334,17 +360,19 @@ if ( typeof Object.create !== 'function' ) {
     $.toast.options = {
         text: '',
         heading: '',
-        showHideTransition: 'fade',
+        showHideTransition: 'fade',	// 'fade', 'slide', or 'plain'
         allowToastClose: true,
-        hideAfter: 3000,
-        loader: true,
+        hideAfter: 3000,			// [ms]
+        loader: true,				// the hideAfter time progress bar
         loaderBg: '#9EC600',
         stack: 5,
-        position: 'bottom-left',
+        position: 'bottom-left',	// 'bottom-left', 'bottom-right', 'top-right', 'top-left', 'bottom-center', 'top-center', 'mid-center'
         bgColor: false,
         textColor: false,
-        textAlign: 'left',
-        icon: false,
+        textAlign: 'left',			// 'left', 'right', 'center'
+        icon: false,				// 'info', 'success', 'warning', 'error'
+        iconAlign: 'middle',		// 'middle', 'top'
+        style: false,				// false to use icon style (if any), or one of the icon types ('info', etc), or 'default' to force default look
         beforeShow: function () {},
         afterShown: function () {},
         beforeHide: function () {},
