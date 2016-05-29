@@ -142,3 +142,6 @@ You can simply download the repo or if you are in rush the <a href="https://raw.
 
 Please report any bugs or features you would like added.
 
+# Copyright
+
+MIT © Kamran Ahmed
