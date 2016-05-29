@@ -144,4 +144,4 @@ Please report any bugs or features you would like added.
 
 # Copyright
 
-MIT © Kamran Ahmed
+MIT © [Kamran Ahmed](http://kamranahmed.info)
