@@ -461,6 +461,23 @@
     textAlign: 'center'
 })</code></pre>
         </div>
+
+        <h2 id="toasts-class"><span class="muted">9.</span> Custom Classes </h2>
+        <p><span class="code">class</span> property is used to add custom classes to the toast element</p>
+        <style type="text/css">
+            .larger-font {
+                font-size: larger;
+            }
+        </style>
+            
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Custom Classes',
+    text: 'Custom classes are specified using the `class` option.',
+    class: 'larger-font'
+})</code></pre>
+        </div>
             
         <h2 id="toasts-events"><span class="muted">11.</span> Toast Events</h2>
         <p>Toast exposes the following events for you to bind to whatever you want</p>
