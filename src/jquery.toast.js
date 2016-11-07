@@ -338,7 +338,6 @@ if ( typeof Object.create !== 'function' ) {
         allowToastClose: true,
         hideAfter: 3000,
         loader: true,
-        loaderBg: '#9EC600',
         stack: 5,
         position: 'bottom-left',
         bgColor: false,
