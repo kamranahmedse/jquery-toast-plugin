@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo - Toast Plugin</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/jquery.toast.css">
+    <style type="text/css">
+        * { font-family: 'Roboto Slab', serif; margin: 0; padding: 0; }
+        hr { border: 1px solid #ccc; margin-bottom: 20px; }
+        h1, h2 { margin: 20px 0px 10px; }
+        a { text-decoration: none;}
+        .container { display: block; width: 1200px; margin: auto; }
+        strong { padding-bottom: 1px; border-bottom: 1px dotted; }
+        p { margin: 10px 0px; }
+        code { font-family: monospace; color: #2d2d2d; background: whitesmoke; display: block; padding: 10px; border: 1px solid #ccc; overflow: scroll;}
+        a.eval-js { color: whitesmoke; padding: 5px 10px; display: inline-block; margin-bottom: 10px; background: #2d2d2d; border-radius: 2px; }
+        span.muted { font-size: 17px; color: #8B7373; }
+        span.code { font-family: monospace; color: #2d2d2d; background: whitesmoke; padding: 5px; border: 1px solid #ccc; }
+        div.code-runner { margin: 20px 20px;}
+        ul, ol { margin: 10px 50px; }
+        ul li { margin-bottom: 10px; }
+        .hidden { display: none; }
+        span.k { display: inline-block; width: 175px; }
+        span.c { color: #F7BCBC; padding-left: 30px; }
+        .plugin-options label { display: inline-block; width: 265px; }
+        span.toast-position span.k { display: inline; } 
+        .toast-index .muted { display: block; color: #AD9D9D; }
+        .toast-index .muted:hover { color: #333; }
+        .latest-update { padding: 0px 30px; border: 1px dashed; margin: 30px 0; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; margin: 20px 0px;">Jquery Toast Plugin</h1>
+        <hr>
+        
+        <h1>Demos</h1>
+		<p>Please refresh when changing posistions as the script was not designed to have different positions per page.</p>
+		<button id="topLeft">Top Left with Success Icon</button>
+		<button id="bottomLeft">Bottom Left with Info Icon</button>
+		<button id="topRight">Top Right with Error Icon</button>
+		<button id="bottomRight">Bottom Right with Warning Icon</button>
+        
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.toast.js"></script>
+
+	
+		<script type="text/javascript">
+			$('#topLeft').on('click', function (e) {
+				$.toast({
+				icon: 'success',
+				heading: "Success",
+				text: 'This is a test success!',
+				position: 'top-left',
+				hideAfter: 6000
+				});
+			});
+			
+			$('#bottomLeft').on('click', function (e) {
+				$.toast({
+				icon: 'info',
+				heading: "Info",
+				text: 'This is a test success!',
+				position: 'bottom-left',
+				hideAfter: 6000
+				});
+			});
+			
+			$('#topRight').on('click', function (e) {
+				$.toast({
+				icon: 'warning',
+				heading: "Warning",
+				text: 'This is a test!',
+				position: 'top-right',
+				hideAfter: 6000
+				});
+			});
+			
+			$('#bottomRight').on('click', function (e) {
+				$.toast({
+				icon: 'error',
+				heading: "Error",
+				text: 'This is a test!',
+				position: 'bottom-right',
+				hideAfter: 6000
+				});
+			});
+		</script>	
+
+</body>
+</html>
