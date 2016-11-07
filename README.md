@@ -4,6 +4,10 @@ A plugin to show highly customizable notifications to the user.
 
 <img src="http://i.imgur.com/RRrb0KE.png" />
 
+#Requirements
+
+Must have jQuery 1.9.0 or above.
+
 #How to use
 
 - You can install the plugin via Bower:
