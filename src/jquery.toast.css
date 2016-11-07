@@ -19,7 +19,7 @@
 
 .close-jq-toast-single { position: absolute; top: 3px; right: 7px; font-size: 14px; cursor: pointer; }
 
-.jq-toast-loader { display: block; position: absolute; top: -2px; height: 5px; width: 0%; left: 0; border-radius: 5px; background: red; }
+.jq-toast-loader { display: block; position: absolute; top: 0; height: 3px; width: 0%; left: 0; border-radius: 2px; background: white; opacity: .5; }
 .jq-toast-loaded { width: 100%; }
 
 .jq-has-icon { padding: 10px 10px 10px 50px; background-repeat: no-repeat; background-position: 10px; }
