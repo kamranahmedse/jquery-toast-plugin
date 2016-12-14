@@ -314,7 +314,7 @@ if ( typeof Object.create !== 'function' ) {
             this.bindToast();
         },
         
-        close: function(options) {
+        close: function() {
             this._toastEl.find('.close-jq-toast-single').click();
         }
     };
