@@ -312,6 +312,10 @@ if ( typeof Object.create !== 'function' ) {
             this.prepareOptions(options, this.options);
             this.setup();
             this.bindToast();
+        },
+        
+        close: function(options) {
+            this._toastEl.find('.close-jq-toast-single').click();
         }
     };
     
@@ -327,6 +331,10 @@ if ( typeof Object.create !== 'function' ) {
 
             update: function( options ) {
                 toast.update( options );
+            },
+            
+            close: function( ) {
+            	toast.close( );
             }
         }
     };
