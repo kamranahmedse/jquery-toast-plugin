@@ -87,6 +87,10 @@ if ( typeof Object.create !== 'function' ) {
             if ( this.options.textAlign ) {
                 this._toastEl.css('text-align', this.options.textAlign);
             }
+            
+            if (this.options.width){          
+              $('.jq-toast-wrap').css('width', this.options.width);  
+            }
 
             if ( this.options.icon !== false ) {
                 this._toastEl.addClass('jq-has-icon');
@@ -350,6 +354,7 @@ if ( typeof Object.create !== 'function' ) {
         bgColor: false,
         textColor: false,
         textAlign: 'left',
+        width:'300px',
         icon: false,
         beforeShow: function () {},
         afterShown: function () {},
