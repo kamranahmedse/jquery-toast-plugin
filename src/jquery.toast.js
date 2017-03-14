@@ -183,7 +183,13 @@ if ( typeof Object.create !== 'function' ) {
                 this._toastEl.on('afterHidden', function () {
                     that.options.afterHidden();
                 });
-            };          
+            };
+
+            if ( typeof this.options.onClick == 'function' ) {
+                this._toastEl.on('click', function () {
+                    that.options.onClick();
+                });
+            };    
         },
 
         addToDom: function () {
@@ -348,7 +354,8 @@ if ( typeof Object.create !== 'function' ) {
         beforeShow: function () {},
         afterShown: function () {},
         beforeHide: function () {},
-        afterHidden: function () {}
+        afterHidden: function () {},
+        onClick: function () {}
     };
 
 })( jQuery, window, document );
