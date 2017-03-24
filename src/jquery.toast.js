@@ -163,31 +163,31 @@ if ( typeof Object.create !== 'function' ) {
 
             if ( typeof this.options.beforeShow == 'function' ) {
                 this._toastEl.on('beforeShow', function () {
-                    that.options.beforeShow();
+                    that.options.beforeShow(that._toastEl);
                 });
             };
 
             if ( typeof this.options.afterShown == 'function' ) {
                 this._toastEl.on('afterShown', function () {
-                    that.options.afterShown();
+                    that.options.afterShown(that._toastEl);
                 });
             };
 
             if ( typeof this.options.beforeHide == 'function' ) {
                 this._toastEl.on('beforeHide', function () {
-                    that.options.beforeHide();
+                    that.options.beforeHide(that._toastEl);
                 });
             };
 
             if ( typeof this.options.afterHidden == 'function' ) {
                 this._toastEl.on('afterHidden', function () {
-                    that.options.afterHidden();
+                    that.options.afterHidden(that._toastEl);
                 });
             };
 
             if ( typeof this.options.onClick == 'function' ) {
                 this._toastEl.on('click', function () {
-                    that.options.onClick();
+                    that.options.onClick(that._toastEl);
                 });
             };    
         },
