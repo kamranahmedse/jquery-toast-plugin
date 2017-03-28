@@ -1,4 +1,4 @@
-#Jquery Toast Plugin
+# Jquery Toast Plugin
 
 A plugin to show highly customizable notifications to the user. 
 
