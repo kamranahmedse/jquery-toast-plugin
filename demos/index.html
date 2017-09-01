@@ -51,11 +51,14 @@
                     <li><a href="#toasts-stack">Setting the toast stack</a></li>
                     <li><a href="#toasts-positioning">Positioning the toast</a></li>
                     <li><a href="#toasts-icons">Messages with icons</a></li>
+                    <li><a href="#toasts-styles">Pre-defined Message Styles</a></li>
                     <li><a href="#toasts-bg-color">Background &amp; text color</a></li>
                     <li><a href="#toasts-text-alignment">Setting the text alignment</a></li>
+                    <li><a href="#toasts-icon-alignment">Setting the icon alignment</a></li>
                     <li><a href="#toasts-events">Toast Events</a></li>
                     <li><a href="#updating-toasts">Updating Toasts</a></li>
                     <li><a href="#resetting-toasts">Resetting Toasts</a></li>
+                    <li><a href="#toast-defaults">Setting Toast Defaults</a></li>
                 </ul>
             </li>
         </ul>
@@ -287,7 +290,7 @@
         <h2 id="toasts-positioning"><span class="muted">7.</span> Positioning the toast</h2>
         <p><span class="code">position</span> property can be used to specify the position. There are following predefined positions which you can use:</p>
         <ul>
-            <li><span class="code">bottom-left</span> value to show the toast at bottom left position</li>
+            <li><span class="code">bottom-left</span> value to show the toast at bottom left position (default)</li>
             <li><span class="code">bottom-right</span> value to show the toast at bottom right position</li>
             <li><span class="code">bottom-center</span> value to..</li>
             <li><span class="code">top-right</span> value to..</li>
@@ -394,6 +397,7 @@
             <li><span class="code">warning</span> generates a toast with warning icon</li>
             <li><span class="code">error</span> generates a toast with error icon</li>
             <li><span class="code">success</span> generates a toast with success icon</li>
+            <li><span class="code">spinner</span> generates a toast with an animated "busy" icon</li>
         </ul>
         
         <div class="code-runner">
@@ -432,7 +436,77 @@
 })</code></pre>
         </div>
             
-        <h2 id="toasts-bg-color"><span class="muted">9.</span> Background &amp; text color</h2>
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Spinner',
+    text: 'This icon indicates something is in progress. The message box has an "info" style by default.',
+    icon: 'spinner'
+})</code></pre>
+        </div>
+            
+        <h2 id="toasts-styles"><span class="muted">9.</span> Pre-defined Message Styles</h2>
+        <p><span class="code">style</span> property can be used to specify the predefined types of toasts. Following are the predefined types:</p>
+        <ul>
+            <li><span class="code">info</span> generates a toast with neutral colors</li>
+            <li><span class="code">warning</span> generates a toast with warning colors</li>
+            <li><span class="code">error</span> generates a toast with error colors</li>
+            <li><span class="code">success</span> generates a toast with success colors</li>
+            <li><span class="code">default</span> used to override a style set by an <span class="code">icon</span> property back to default.</li>
+        </ul>
+        
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Warning',
+    text: 'Now you can seemlessly generate warnings using the style property in the options',
+    style: 'warning'
+})</code></pre>
+        </div>
+        
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Success',
+    text: 'Here is some kind of success message.',
+    style: 'success'
+})</code></pre>
+        </div>
+    
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Error... not!',
+    text: 'An unexpected error occured while trying to show you the toast! ..Just kidding, it is just a message, toast is right in front of you.',
+    icon: 'error',
+    style: 'success'
+})</code></pre>
+        </div>
+    
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Information with default style',
+    text: 'Now you can specify toast styles as well.',
+    icon: 'info',
+    style: 'default'
+})</code></pre>
+        </div>
+            
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Warning Spinner',
+    text: 'This icon indicates something is in progress, with a forced warning style.',
+    icon: 'spinner',
+    style: 'warning',
+    hideAfter: false,
+    iconAlign: top
+})</code></pre>
+        </div>
+
+		  
+        <h2 id="toasts-bg-color"><span class="muted">10.</span> Background &amp; text color</h2>
         <p><span class="code">bgColor</span> property is used to specify the background color of the toast message. Default is '#444'</p>
         <p><span class="code">textColor</span> property is used to specify the text color of the toast message. Default is '#eee'</p>
             
@@ -446,10 +520,10 @@
 })</code></pre>
         </div>
 
-        <h2 id="toasts-text-alignment"><span class="muted">10.</span> Setting the text alignment</h2>
+        <h2 id="toasts-text-alignment"><span class="muted">11.</span> Setting the text alignment</h2>
         <p><span class="code">textAlign</span> property is used to set the alignment of text inside the toast. Permitted values are:</p>
         <ul>
-            <li><span class="code">left</span></li>
+            <li><span class="code">left</span> (default)</li>
             <li><span class="code">right</span></li>
             <li><span class="code">center</span></li>
         </ul>
@@ -462,7 +536,24 @@
 })</code></pre>
         </div>
             
-        <h2 id="toasts-events"><span class="muted">11.</span> Toast Events</h2>
+        <h2 id="toasts-icon-alignment"><span class="muted">12.</span> Setting the icon alignment</h2>
+        <p><span class="code">iconAlign</span> property is used to set the vertical alignment of (optional) icon. Permitted values are:</p>
+        <ul>
+            <li><span class="code">middle</span> (default)</li>
+            <li><span class="code">top</span></li>
+        </ul>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'Error',
+    text: 'An unexpected error occured while trying to show you the toast! &lt;p&gt;..Just kidding, it is just a message, toast is right in front of you.&lt;/p&gt;',
+    icon: 'error',
+    iconAlign: 'top'
+})</code></pre>
+        </div>
+            
+        <h2 id="toasts-events"><span class="muted">13.</span> Toast Events</h2>
         <p>Toast exposes the following events for you to bind to whatever you want</p>
         <ul>
             <li><span class="code">beforeShow</span> will be triggered right before the toast is about to appear</li>
@@ -494,33 +585,33 @@
 })</code></pre>
         </div>
     
-        <h2 id="updating-toasts"><span class="muted">12.</span> Updating Toasts</h2>
+        <h2 id="updating-toasts"><span class="muted">14.</span> Updating Toasts</h2>
         <p>If you have a reference to a toast and want to update that, you can do so by calling the <span class="code">update</span> method on the instance.</p>
 
         <div class="code-runner">
         <a href="#" class="eval-js">Run Code</a>
 <pre><code>
 var myToast = $.toast({
-    heading: 'Information',
-    text: 'Here is some information that will be later on turned to an error',
-    icon: 'info',
+    heading: 'Please Wait...',
+    text: 'Here is some information that will later be replaced.',
+    icon: 'spinner',
     hideAfter: false
 });
 
 // Update the toast after three seconds.
 window.setTimeout(function(){
     myToast.update({
-        heading: 'Error',
-        text: 'Here is an information that changed to error',
-        icon: 'error',
-        hideAfter: false
+        heading: 'Success',
+        text: 'Here is the information that changed. It also has a timeout.',
+        icon: 'success',
+        hideAfter: 6000
     });    
 }, 3000)
 
 </code></pre>
         </div>
 
-        <h2 id="resetting-toasts"><span class="muted">13.</span> Resetting Toasts</h2>
+        <h2 id="resetting-toasts"><span class="muted">15.</span> Resetting Toasts</h2>
         <p>If you have the reference to a specific toast, you can reset that by doing the following</p>
 
         <div class="code-runner">
@@ -538,6 +629,23 @@ $.toast().reset('all');
         </div>
 
         
+        <h2 id="toast-defaults"><span class="muted">16.</span> Setting Toast Defaults</h2>
+        <p>You can override Toast default options centrally, anywhere before calling $.toast(). For example:</p>
+
+        <div class="code-runner">
+<pre><code>
+var myToastDefaults = {
+	showHideTransition: "slide",
+	position: "top-left",
+	iconAlign: "top",
+	loaderBg: "#3380ff",
+};
+
+$.extend($.toast.options, myToastDefaults);
+</code></pre>
+        </div>
+
+
 
     <div class="plugin-options">
           <h1 id="toast-generator">Customize Plugin</h1>
@@ -629,16 +737,29 @@ $.toast().reset('all');
           </div>
           
           <p class="">
-            <label for="text-align">Icon</label>
+            <label for="icon-type">Icon</label>
             <select name="icon-type" id="icon-type" class="text-align">
               <option value="">-- No icon --</option>
               <option selected="selected" value="warning">Warning</option>
               <option value="success">Success</option>
               <option value="error">Error</option>
               <option value="info">Information</option>
+              <option value="spinner">Spinner</option>
             </select>
           </p>
 
+          <p class="">
+            <label for="style-type">Style</label>
+            <select name="style-type" id="style-type" class="style-type">
+              <option value="">-- No style --</option>
+              <option selected="selected" value="warning">Warning</option>
+              <option value="success">Success</option>
+              <option value="error">Error</option>
+              <option value="info">Information</option>
+              <option value="default">Default</option>
+            </select>
+          </p>
+			 
           <div class="custom-color-info" style="display: none;">
               <p>
                 <label for="toast-bg">Background Color</label>
@@ -657,6 +778,14 @@ $.toast().reset('all');
               <option value="left">Left</option>
               <option value="right">Right</option>
               <option value="center">Center</option>
+            </select>
+          </p>
+
+          <p class="">
+            <label for="text-align">Icon Alignment</label>
+            <select name="icon-align" id="icon-align" class="icon-align">
+              <option value="middle">Middle</option>
+              <option value="top">Top</option>
             </select>
           </p>
 
@@ -688,8 +817,9 @@ $.toast().reset('all');
     <span class="toast-text-line"><span class="k">text</span>: "<span class="toast-text s">Hey there fellas, here is a simple toast. Change the options above and then see the code that generates that toast</span>", <span class="c">// Text that is to be shown in the toast</span></span>
     <span class="toast-heading-line"><span class="k">heading</span>: '<span class="toast-heading s">How to use</span>', <span class="c">// Optional heading to be shown on the toast</span></span>
     <span class="toast-icon-line"><span class="k">icon</span>: '<span class="toast-icon s">warning</span>', <span class="c">// Type of toast icon</span></span>
+    <span class="toast-style-line"><span class="k">style</span>: '<span class="toast-style s">warning</span>', <span class="c">// Type of toast dialog style</span></span>
     <span class="toast-transition-line"><span class="k">showHideTransition</span>: '<span class="toast-transition s">fade</span>', <span class="c">// fade, slide or plain</span></span>
-    <span class="toast-allowToastClose-line"><span class="k">allowToastClose</span>: <spna class="kt toast-allowToastClose">true</spna>, <span class="c">// Boolean value <span class="kt">true</span> or <span class="kt">false</span></span></span>
+    <span class="toast-allowToastClose-line"><span class="k">allowToastClose</span>: <span class="kt toast-allowToastClose">true</span>, <span class="c">// Boolean value <span class="kt">true</span> or <span class="kt">false</span></span></span>
     <span class="toast-hideAfter-line"><span class="k">hideAfter</span>: <span class="n toast-hideAfter">3000</span>, <span class="c">// <span class="kt">false</span> to make it sticky or number representing the miliseconds as time after which toast needs to be hidden</span></span>
     <span class="toast-stackLength-line"><span class="k">stack</span>: <span class="n toast-stackLength">5</span>, <span class="c">// <span class="kt">false</span> if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time</span></span>
     <span class="toast-position-string-line"><span class="k">position</span>: '<span class="s toast-position">bottom-left</span>', <span class="c">// bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values</span></span>
@@ -697,6 +827,7 @@ $.toast().reset('all');
     <span class="toast-bgColor-line" style="display: none;"><span class="k">bgColor</span>: '<span class="s toast-bgColor">#444</span>', <span class="c"> // Background color of the toast</span></span>
     <span class="toast-textColor-line" style="display: none;"><span class="k">textColor</span>: '<span class="s toast-textColor">#eee</span>', <span class="c"> // Text color of the toast</span></span>
     <span class="toast-textAlign-line"><span class="k">textAlign</span>: '<span class="s toast-textAlign">left</span>', <span class="c"> // Text alignment i.e. left, right or center</span></span>
+    <span class="toast-iconAlign-line"><span class="k">iconAlign</span>: '<span class="s toast-iconAlign">middle</span>', <span class="c"> // Icon vertical alignment i.e. middle, top</span></span>
     <span class="toast-loader-line"><span class="k">loader</span>: <span class="s toast-textLoader">true</span>, <span class="c"> // Whether to show loader or not. True by default</span></span>
     <span class="toast-loaderBg-line"><span class="k">loaderBg</span>: '<span class="s toast-textLoaderBg">#9EC600</span>', <span class="c"> // Background color of the toast loader</span></span>
     <span class="toast-beforeShow-line"><span class="nb k">beforeShow</span>: <span class="nf toast-beforeShow">function ()</span> {}, <span class="c">// will be triggered before the toast is shown</span></span>
@@ -727,7 +858,7 @@ $.toast().reset('all');
             });
 
             $('#icon-type').on('change', function () {
-                if ( !$(this).val() ) {
+                if ( !$(this).val() && !$('#style-type').val() ) {
                     $('.custom-color-info').show();
                     $('.toast-icon-line').hide();
                     $('.toast-bgColor-line').show();
@@ -738,6 +869,19 @@ $.toast().reset('all');
                     $('.toast-bgColor-line').hide();
                     $('.toast-textColor-line').hide();
                     $('.toast-icon-line span.toast-icon').text( $(this).val() );
+                }
+            });
+
+            $('#style-type').on('change', function () {
+                if ( !$(this).val() && !$('#icon-type').val() ) {
+                    $('.custom-color-info').show();
+                    $('.toast-bgColor-line').show();
+                    $('.toast-textColor-line').show();
+                } else {
+                    $('.custom-color-info').hide();
+                    $('.toast-bgColor-line').hide();
+                    $('.toast-textColor-line').hide();
+                    $('.toast-style-line span.toast-style').text( $(this).val() );
                 }
             });
 
@@ -756,7 +900,9 @@ $.toast().reset('all');
                     var toastBg = $('#toast-bg').val(); 
                     var toastTextColor = $('#toast-text-color').val();
                     var toastIcon = $('#icon-type').val();
+                    var toastStyle = $('#style-type').val();
                     var textAlign = $('#text-align').val();
+                    var iconAlign = $('#icon-align').val();
                     var toastEvents = $('#add-toast-events').val();
                     var loader = $('#show-loader').val();
                     var loaderBg = $('#loader-bg').val();
@@ -838,7 +984,7 @@ $.toast().reset('all');
                         // $('.toast-position-string-obj toast-position').text('');
                     } 
 
-                    if ( !toastIcon ) {
+                    if ( !toastIcon && !toastStyle ) {
                         if ( toastBg ) {
                             $('.toast-bgColor-line').show(); 
                             $('.toast-bgColor-line .toast-bgColor').text( toastBg ); 
@@ -855,6 +1001,9 @@ $.toast().reset('all');
                             $('.toast-textColor-line .toast-textColor').text(''); 
                         } 
                     }
+						  
+						  $('.toast-icon-line span.toast-icon').text( toastIcon );
+						  $('.toast-style-line span.toast-style').text( toastStyle );
 
                     if ( textAlign ) {
                         $('.toast-textAlign-line').show(); 
@@ -862,6 +1011,14 @@ $.toast().reset('all');
                     } else {
                         $('.toast-textAlign-line').hide(); 
                         $('.toast-textAlign-line .toast-textAlign').text( ''); 
+                    } 
+
+                    if ( iconAlign ) {
+                        $('.toast-iconAlign-line').show(); 
+                        $('.toast-iconAlign-line .toast-iconAlign').text( iconAlign ); 
+                    } else {
+                        $('.toast-iconAlign-line').hide(); 
+                        $('.toast-iconAlign-line .toast-iconAlign').text( ''); 
                     } 
 
                     if (loader == 'false') {
@@ -944,6 +1101,10 @@ $.toast().reset('all');
                         options.icon = $('.toast-icon-line .toast-icon').text();
                     };
 
+                    if ( $('.toast-style-line').is(':visible') ) {
+                        options.style = $('.toast-style-line .toast-style').text();
+                    };
+
                     if ( $('.toast-bgColor-line').is(':visible') ) {
                         options.bgColor = $('#toast-bg').val(); 
                     }; 
@@ -954,6 +1115,10 @@ $.toast().reset('all');
 
                     if ( $("#text-align").is(':visible') ) {
                         options.textAlign = $('#text-align').val(); 
+                    };
+
+                    if ( $("#icon-align").is(':visible') ) {
+                        options.iconAlign = $('#icon-align').val(); 
                     };
 
                     options.loader = $('.toast-textLoader').html() === 'false' ? false : true;
