@@ -4,7 +4,7 @@ A plugin to show highly customizable notifications to the user.
 
 <img src="http://i.imgur.com/RRrb0KE.png" />
 
-#How to use
+# How to use
 
 - You can install the plugin via Bower:
 
@@ -22,10 +22,10 @@ A plugin to show highly customizable notifications to the user.
 - Include the CSS and JS files.
 - Simply do ```$.toast('Toast message to be shown')``` Of course it would be the world's simplest toast message but believe me **you can do a lot more** with the options.
 
-#Demo
+# Demo
 For some quick demos and a detailed documentation accompanied by the demos for each of the available options can be accessed through http://kamranahmed.info/toast
 
-##Quick usage examples
+## Quick usage examples
 **Simple textual toast**
 ```javascript
 // Non sticky version
@@ -115,7 +115,7 @@ To learn more about how to use and customize it, head to <a href="http://kamrana
 
 You can simply download the repo or if you are in rush the <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.min.css" target="_blank">minified CSS</a> or <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.css">non-minified CSS</a> can be found and <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.min.js" target="_blank">minified JS</a> and <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.js" target="_blank">non minified JS</a> can also be found.
 
-#Features
+# Features
 <ul>
   <li>Show different types of toasts i.e. informational, warning, errors and success</li>
   <li>Custom <strong>toast background color</strong> and <strong>text color</strong></li>
