@@ -1,4 +1,3 @@
-;
 // jQuery toast plugin created by Kamran Ahmed copyright MIT license 2015
 if ( typeof Object.create !== 'function' ) {
     Object.create = function( obj ) {
@@ -95,6 +94,10 @@ if ( typeof Object.create !== 'function' ) {
                     this._toastEl.addClass('jq-icon-' + this.options.icon);
                 };
             };
+
+            if ( this.options.class !== false ){
+                this._toastEl.addClass(this.options.class)
+            }
         },
 
         position: function () {
