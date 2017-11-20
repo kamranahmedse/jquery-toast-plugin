@@ -196,7 +196,9 @@ if ( typeof Object.create !== 'function' ) {
              if ( _container.length === 0 ) {
                 
                 _container = $('<div></div>',{
-                    class: "jq-toast-wrap"
+                    class: "jq-toast-wrap",
+                    role: "alert",
+                    "aria-live": "polite"
                 });
 
                 $('body').append( _container );
