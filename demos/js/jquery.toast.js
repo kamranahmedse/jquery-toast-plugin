@@ -193,7 +193,7 @@ if ( typeof Object.create !== 'function' ) {
              
              if ( _container.length === 0 ) {
                 
-                _container = $('<div class="jq-toast-wrap" role="alert" aria-life="polite"></div>');
+                _container = $('<div class="jq-toast-wrap" role="alert" aria-live="polite"></div>');
 
                 $('body').append( _container );
 
