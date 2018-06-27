@@ -44,7 +44,7 @@ if ( typeof Object.create !== 'function' ) {
             var _toastContent = '';
             
             this._toastEl = this._toastEl || $('<div></div>', {
-                class : 'jq-toast-single'
+                'class' : 'jq-toast-single'
             });
 
             // For the loader on top
@@ -95,8 +95,8 @@ if ( typeof Object.create !== 'function' ) {
                 };
             };
 
-            if ( this.options.class !== false ){
-                this._toastEl.addClass(this.options.class)
+            if ( this.options.htmlClass !== false ){
+                this._toastEl.addClass(this.options.htmlClass)
             }
         },
 
@@ -196,8 +196,8 @@ if ( typeof Object.create !== 'function' ) {
              if ( _container.length === 0 ) {
                 
                 _container = $('<div></div>',{
-                    class: "jq-toast-wrap",
-                    role: "alert",
+                    "class": "jq-toast-wrap",
+                    "role": "alert",
                     "aria-live": "polite"
                 });
 
