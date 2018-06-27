@@ -43,9 +43,7 @@ if ( typeof Object.create !== 'function' ) {
             
             var _toastContent = '';
             
-            this._toastEl = this._toastEl || $('<div></div>', {
-                'class' : 'jq-toast-single'
-            });
+            this._toastEl = this._toastEl || $('<div class="jq-toast-single"></div>');
 
             // For the loader on top
             _toastContent += '<span class="jq-toast-loader"></span>';            
@@ -195,11 +193,7 @@ if ( typeof Object.create !== 'function' ) {
              
              if ( _container.length === 0 ) {
                 
-                _container = $('<div></div>',{
-                    "class": "jq-toast-wrap",
-                    "role": "alert",
-                    "aria-live": "polite"
-                });
+                _container = $('<div class="jq-toast-wrap" role="alert" aria-life="polite"></div>');
 
                 $('body').append( _container );
 
