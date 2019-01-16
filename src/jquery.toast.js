@@ -34,9 +34,11 @@ if ( typeof Object.create !== 'function' ) {
         process: function () {
             this.setup();
             this.addToDom();
+            this.toRtl();
             this.position();
             this.bindToast();
             this.animate();
+            
         },
 
         setup: function () {
@@ -99,10 +101,15 @@ if ( typeof Object.create !== 'function' ) {
                 this._toastEl.addClass(this.options.class)
             }
         },
-
+        toRtl: function () {
+            if ( ( typeof this.options.isRtl === 'boolean' )  ) {
+                if ( this.options.isRtl === true ) {
+                    this._container.addClass( 'is-rtl' );
+                }
+            }
+        },
         position: function () {
             if ( ( typeof this.options.position === 'string' ) && ( $.inArray( this.options.position, this._positionClasses) !== -1 ) ) {
-
                 if ( this.options.position === 'bottom-center' ) {
                     this._container.css({
                         left: ( $(window).outerWidth() / 2 ) - this._container.outerWidth()/2,
@@ -130,7 +137,16 @@ if ( typeof Object.create !== 'function' ) {
                     right : this.options.position.right ? this.options.position.right : 'auto'
                 });
             } else {
-                this._container.addClass( 'bottom-left' );
+             
+                if ( ( typeof this.options.isRtl === 'boolean' )  ) {
+                  
+                    if ( this.options.isRtl === true ) {
+                        this._container.addClass( 'bottom-right' );
+                    }
+                }else{
+                    this._container.addClass( 'bottom-left' );
+                }                
+                
             }
         },
 
@@ -198,13 +214,11 @@ if ( typeof Object.create !== 'function' ) {
         addToDom: function () {
 
              var _container = $('.jq-toast-wrap');
-             
+             _container.attr('class','jq-toast-wrap');
              if ( _container.length === 0 ) {
                 
                 _container = $('<div></div>',{
-                    class: "jq-toast-wrap",
-                    role: "alert",
-                    "aria-live": "polite"
+                    class: "jq-toast-wrap"
                 });
 
                 $('body').append( _container );
@@ -362,6 +376,7 @@ if ( typeof Object.create !== 'function' ) {
         position: 'bottom-left',
         bgColor: false,
         textColor: false,
+        isRtl: false,
         textAlign: 'left',
         icon: false,
         beforeShow: function () {},
