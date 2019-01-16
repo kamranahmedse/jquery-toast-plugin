@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Demo - Toast Plugin</title>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/jquery.toast.css">
+    <link rel="stylesheet" href="jquery.toast.css">
     <style type="text/css">
         * { font-family: 'Roboto Slab', serif; margin: 0; padding: 0; }
         hr { border: 1px solid #ccc; margin-bottom: 20px; }
@@ -53,6 +53,7 @@
                     <li><a href="#toasts-icons">Messages with icons</a></li>
                     <li><a href="#toasts-bg-color">Background &amp; text color</a></li>
                     <li><a href="#toasts-text-alignment">Setting the text alignment</a></li>
+                    <li><a href="#toasts-rtl">Setting the text direction</a></li>
                     <li><a href="#toasts-events">Toast Events</a></li>
                     <li><a href="#updating-toasts">Updating Toasts</a></li>
                     <li><a href="#resetting-toasts">Resetting Toasts</a></li>
@@ -462,7 +463,26 @@
 })</code></pre>
         </div>
 
-        <h2 id="toasts-class"><span class="muted">9.</span> Custom Classes </h2>
+        <h2 id="toasts-rtl"><span class="muted">11.</span> Setting the text direction</h2>
+        <p><span class="code">isRtl</span> property is used to set the direction of text inside the toast. Permitted values are:</p>
+        <ul>
+            <li><span class="code">false</span></li>
+            <li><span class="code">true</span></li>
+        </ul>
+
+        <div class="code-runner">
+            <a href="#" class="eval-js">Run Code</a>
+<pre><code>$.toast({
+    heading: 'عملیات موفق',
+    text: 'عملیات بروز رسانی با موفقیت صورت گرفته است',
+    icon: 'info',
+    textAlign: 'right',
+    isRtl: true,
+    position: 'bottom-right'
+})</code></pre>
+        </div>       
+
+        <h2 id="toasts-class"><span class="muted">12.</span> Custom Classes </h2>
         <p><span class="code">class</span> property is used to add custom classes to the toast element</p>
         <style type="text/css">
             .larger-font {
@@ -479,7 +499,7 @@
 })</code></pre>
         </div>
             
-        <h2 id="toasts-events"><span class="muted">11.</span> Toast Events</h2>
+        <h2 id="toasts-events"><span class="muted">13.</span> Toast Events</h2>
         <p>Toast exposes the following events for you to bind to whatever you want</p>
         <ul>
             <li><span class="code">beforeShow</span> will be triggered right before the toast is about to appear</li>
@@ -511,7 +531,7 @@
 })</code></pre>
         </div>
     
-        <h2 id="updating-toasts"><span class="muted">12.</span> Updating Toasts</h2>
+        <h2 id="updating-toasts"><span class="muted">14.</span> Updating Toasts</h2>
         <p>If you have a reference to a toast and want to update that, you can do so by calling the <span class="code">update</span> method on the instance.</p>
 
         <div class="code-runner">
@@ -537,7 +557,7 @@ window.setTimeout(function(){
 </code></pre>
         </div>
 
-        <h2 id="resetting-toasts"><span class="muted">13.</span> Resetting Toasts</h2>
+        <h2 id="resetting-toasts"><span class="muted">15.</span> Resetting Toasts</h2>
         <p>If you have the reference to a specific toast, you can reset that by doing the following</p>
 
         <div class="code-runner">
@@ -726,7 +746,7 @@ $.toast().reset('all');
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.toast.js"></script>
+    <script type="text/javascript" src="jquery.toast.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -738,7 +758,7 @@ $.toast().reset('all');
                     var code = $(this).siblings('pre').find('code').text();
                     code.replace("<span class='hidden'>", '');
                     code.replace("</span");
-
+                      
                     eval( code );
                 };
             });

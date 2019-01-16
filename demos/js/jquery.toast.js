@@ -34,9 +34,11 @@ if ( typeof Object.create !== 'function' ) {
         process: function () {
             this.setup();
             this.addToDom();
+            this.toRtl();
             this.position();
             this.bindToast();
             this.animate();
+            
         },
 
         setup: function () {
@@ -99,10 +101,15 @@ if ( typeof Object.create !== 'function' ) {
                 this._toastEl.addClass(this.options.class)
             }
         },
-
+        toRtl: function () {
+            if ( ( typeof this.options.isRtl === 'boolean' )  ) {
+                if ( this.options.isRtl === true ) {
+                    this._container.addClass( 'is-rtl' );
+                }
+            }
+        },
         position: function () {
             if ( ( typeof this.options.position === 'string' ) && ( $.inArray( this.options.position, this._positionClasses) !== -1 ) ) {
-
                 if ( this.options.position === 'bottom-center' ) {
                     this._container.css({
                         left: ( $(window).outerWidth() / 2 ) - this._container.outerWidth()/2,
@@ -130,7 +137,16 @@ if ( typeof Object.create !== 'function' ) {
                     right : this.options.position.right ? this.options.position.right : 'auto'
                 });
             } else {
-                this._container.addClass( 'bottom-left' );
+             
+                if ( ( typeof this.options.isRtl === 'boolean' )  ) {
+                  
+                    if ( this.options.isRtl === true ) {
+                        this._container.addClass( 'bottom-right' );
+                    }
+                }else{
+                    this._container.addClass( 'bottom-left' );
+                }                
+                
             }
         },
 
@@ -166,39 +182,43 @@ if ( typeof Object.create !== 'function' ) {
 
             if ( typeof this.options.beforeShow == 'function' ) {
                 this._toastEl.on('beforeShow', function () {
-                    that.options.beforeShow();
+                    that.options.beforeShow(that._toastEl);
                 });
             };
 
             if ( typeof this.options.afterShown == 'function' ) {
                 this._toastEl.on('afterShown', function () {
-                    that.options.afterShown();
+                    that.options.afterShown(that._toastEl);
                 });
             };
 
             if ( typeof this.options.beforeHide == 'function' ) {
                 this._toastEl.on('beforeHide', function () {
-                    that.options.beforeHide();
+                    that.options.beforeHide(that._toastEl);
                 });
             };
 
             if ( typeof this.options.afterHidden == 'function' ) {
                 this._toastEl.on('afterHidden', function () {
-                    that.options.afterHidden();
+                    that.options.afterHidden(that._toastEl);
                 });
-            };          
+            };
+
+            if ( typeof this.options.onClick == 'function' ) {
+                this._toastEl.on('click', function () {
+                    that.options.onClick(that._toastEl);
+                });
+            };    
         },
 
         addToDom: function () {
 
              var _container = $('.jq-toast-wrap');
-             
+             _container.attr('class','jq-toast-wrap');
              if ( _container.length === 0 ) {
                 
                 _container = $('<div></div>',{
-                    class: "jq-toast-wrap",
-                    role: "alert",
-                    "aria-live": "polite"
+                    class: "jq-toast-wrap"
                 });
 
                 $('body').append( _container );
@@ -317,6 +337,10 @@ if ( typeof Object.create !== 'function' ) {
             this.prepareOptions(options, this.options);
             this.setup();
             this.bindToast();
+        },
+        
+        close: function() {
+            this._toastEl.find('.close-jq-toast-single').click();
         }
     };
     
@@ -332,6 +356,10 @@ if ( typeof Object.create !== 'function' ) {
 
             update: function( options ) {
                 toast.update( options );
+            },
+            
+            close: function( ) {
+            	toast.close( );
             }
         }
     };
@@ -348,12 +376,14 @@ if ( typeof Object.create !== 'function' ) {
         position: 'bottom-left',
         bgColor: false,
         textColor: false,
+        isRtl: false,
         textAlign: 'left',
         icon: false,
         beforeShow: function () {},
         afterShown: function () {},
         beforeHide: function () {},
-        afterHidden: function () {}
+        afterHidden: function () {},
+        onClick: function () {}
     };
 
 })( jQuery, window, document );
