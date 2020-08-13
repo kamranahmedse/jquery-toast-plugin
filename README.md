@@ -23,7 +23,7 @@ A plugin to show highly customizable notifications to the user.
 - Simply do ```$.toast('Toast message to be shown')``` Of course it would be the world's simplest toast message but believe me **you can do a lot more** with the options.
 
 # Demo
-For some quick demos and a detailed documentation accompanied by the demos for each of the available options can be accessed through http://kamranahmed.info/toast
+For some quick demos and detailed documentation accompanied by the demos for each of the available options can be accessed through http://kamranahmed.info/toast
 
 ## Quick usage examples
 **Simple textual toast**
@@ -76,7 +76,7 @@ $.toast({
   textColor : '#eee',            // text color
   allowToastClose : false,       // Show the close button or not
   hideAfter : 5000,              // `false` to make it sticky or time in miliseconds to hide after
-  stack : 5,                     // `fakse` to show one stack at a time count showing the number of toasts that can be shown at once
+  stack : 5,                     // `false` to show one stack at a time count showing the number of toasts that can be shown at once
   textAlign : 'left',            // Alignment of text i.e. left, right, center
   position : 'bottom-left'       // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values to position the toast on page
 })
@@ -87,7 +87,7 @@ $.toast({
 var myToast = $.toast('Some toast that needs to be removed.');
 myToast.reset(); // remove the toast "Some toast that needs to be removed"
 ```
-What if I want to reset all the toasts at once? You may ask. Well in that case, you can do the following:
+What if I want to reset all the toasts at once? You may ask. Well, in that case, you can do the following:
 ```javascript
 $.toast().reset('all');
 ```
@@ -109,11 +109,11 @@ window.setTimeout(function(){
   });
 }, 5000);
 ```
-To learn more about how to use and customize it, head to <a href="http://kamranahmed.info/toast" target="_blank">http://kamranahmed.info/toast</a>. Also you can find a customizer there that will let you modify the look and feel of the toast however you like it.
+To learn more about how to use and customize it, head to <a href="http://kamranahmed.info/toast" target="_blank">http://kamranahmed.info/toast</a>. Also, you can find a customizer there that will let you modify the look and feel of the toast however you like it.
 
 <hr>
 
-You can simply download the repo or if you are in rush the <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.min.css" target="_blank">minified CSS</a> or <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.css">non-minified CSS</a> can be found and <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.min.js" target="_blank">minified JS</a> and <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/jquery.toast.js" target="_blank">non minified JS</a> can also be found.
+You can simply download the repo or if you are in rush the <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/dist/jquery.toast.min.css" target="_blank">minified CSS</a> or <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/src/jquery.toast.css">non-minified CSS</a> can be found and <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/dist/jquery.toast.min.js" target="_blank">minified JS</a> and <a href="https://raw.githubusercontent.com/kamranahmedse/jquery-toast-plugin/master/src/jquery.toast.js" target="_blank">non minified JS</a> can also be found.
 
 # Features
 <ul>
