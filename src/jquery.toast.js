@@ -91,6 +91,7 @@ if ( typeof Object.create !== 'function' ) {
                 this._toastEl.addClass('jq-has-icon');
 
                 if ( $.inArray(this.options.icon, this._defaultIcons) !== -1 ) {
+                    this._toastEl.removeClass('jq-icon-info jq-icon-warning jq-icon-error jq-icon-success');
                     this._toastEl.addClass('jq-icon-' + this.options.icon);
                 };
             };
