@@ -285,9 +285,7 @@ if ( typeof Object.create !== 'function' ) {
             if (this.canAutoHide()) {
 
                 var that = this;
-
-                window.setTimeout(function(){
-                    
+                var hideFunction = function (){
                     if ( that.options.showHideTransition.toLowerCase() === 'fade' ) {
                         that._toastEl.trigger('beforeHide');
                         that._toastEl.fadeOut(function () {
@@ -304,8 +302,15 @@ if ( typeof Object.create !== 'function' ) {
                             that._toastEl.trigger('afterHidden');
                         });
                     }
+                }
 
-                }, this.options.hideAfter);
+                var timer = window.setTimeout(hideFunction, this.options.hideAfter);
+
+                that._toastEl.hover(() => {
+                    clearTimeout(timer);
+                }, () => {
+                    window.setTimeout(hideFunction, this.options.hideAfter);
+                })
             };
         },
 
