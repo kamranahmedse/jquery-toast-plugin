@@ -303,7 +303,7 @@ if ( typeof Object.create !== 'function' ) {
                 that._toastEl.hover(() => {
                     clearTimeout(timer);
                 }, () => {
-                    window.setTimeout(hideFunction, this.options.hideAfter);
+                    timer = window.setTimeout(hideFunction, this.options.hideAfter);
                 })
             };
         },
